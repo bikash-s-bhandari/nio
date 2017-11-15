@@ -1,0 +1,38 @@
+[27-Oct-2016 09:24:44 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/dcoparsagov/public_html/application/modules/admin/views/view_list.php on line 64
+[27-Oct-2016 09:24:44 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/dcoparsagov/public_html/application/modules/admin/views/view_list.php on line 64
+[27-Oct-2016 09:24:46 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/dcoparsagov/public_html/application/modules/admin/views/view_list.php on line 64
+[27-Oct-2016 09:24:47 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/dcoparsagov/public_html/application/modules/admin/views/view_list.php on line 64
+[27-Oct-2016 09:24:48 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/dcoparsagov/public_html/application/modules/admin/views/view_list.php on line 64
+[27-Oct-2016 09:25:09 UTC] PHP Parse error:  syntax error, unexpected '<' in /home/dcoparsagov/public_html/application/modules/admin/views/view_list.php on line 64
+[15-Nov-2016 05:00:36 UTC] PHP Fatal error:  Call to undefined method Download_model::getLinks() in /home/dcoparsagov/public_html/application/modules/office-manager/controllers/Download.php on line 212
+[15-Nov-2016 05:02:17 UTC] PHP Fatal error:  Call to undefined method Download_model::getLinks() in /home/dcoparsagov/public_html/application/modules/office-manager/controllers/Download.php on line 212
+[15-Nov-2016 05:02:51 UTC] PHP Fatal error:  Call to undefined method Download_model::getLinks() in /home/dcoparsagov/public_html/application/modules/office-manager/controllers/Download.php on line 212
+[15-Nov-2016 05:03:09 UTC] PHP Fatal error:  Call to undefined method Download_model::getLinks() in /home/dcoparsagov/public_html/application/modules/office-manager/controllers/Download.php on line 212
+[17-Nov-2016 07:40:38 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/dcoparsagov/public_html/application/modules/office-manager/views/staff_form.php on line 56
+[17-Nov-2016 07:40:40 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/dcoparsagov/public_html/application/modules/office-manager/views/staff_form.php on line 56
+[17-Nov-2016 07:40:40 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/dcoparsagov/public_html/application/modules/office-manager/views/staff_form.php on line 56
+[17-Nov-2016 07:40:41 UTC] PHP Parse error:  syntax error, unexpected '?' in /home/dcoparsagov/public_html/application/modules/office-manager/views/staff_form.php on line 56
+[17-Nov-2016 09:19:10 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 209
+[17-Nov-2016 09:23:22 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 210
+[17-Nov-2016 09:24:12 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/models/Frontend_model.php on line 50
+[17-Nov-2016 09:24:13 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/models/Frontend_model.php on line 50
+[17-Nov-2016 09:24:16 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/models/Frontend_model.php on line 50
+[17-Nov-2016 09:24:34 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 209
+[17-Nov-2016 09:24:35 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 209
+[17-Nov-2016 09:24:53 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 209
+[17-Nov-2016 09:24:54 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 209
+[17-Nov-2016 09:24:54 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Frontend.php on line 209
+[17-Nov-2016 09:25:18 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/models/Frontend_model.php on line 50
+[17-Nov-2016 11:05:48 UTC] PHP Fatal error:  Call to undefined function dumparay() in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 16
+[19-Nov-2016 13:07:08 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 16
+[19-Nov-2016 13:07:21 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 16
+[19-Nov-2016 13:08:11 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 16
+[19-Nov-2016 13:08:56 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 16
+[19-Nov-2016 13:11:39 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 17
+[19-Nov-2016 13:11:44 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 17
+[19-Nov-2016 13:12:28 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 18
+[19-Nov-2016 13:13:42 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 18
+[19-Nov-2016 13:14:35 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 18
+[19-Nov-2016 13:14:58 UTC] PHP Parse error:  syntax error, unexpected 'key' (T_STRING), expecting ']' in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 18
+[19-Nov-2016 13:17:13 UTC] PHP Fatal error:  Call to a member function getRecentNotice() on a non-object in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 19
+[19-Nov-2016 13:18:41 UTC] PHP Parse error:  syntax error, unexpected '=>' (T_DOUBLE_ARROW) in /home/dcoparsagov/public_html/application/modules/frontend/controllers/Search.php on line 8
