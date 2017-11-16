@@ -285,6 +285,17 @@ function get_category_id() {
  return $array;
 }
 
+function get_cat_id($news_id)
+{
+	$ci = & get_instance();
+	$query=$ci->db->select('*')
+	->from('news')
+	->where('id',$news_id)
+	->get();
+	return $query->row();
+
+}
+
 
  
 

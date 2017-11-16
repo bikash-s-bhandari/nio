@@ -55,8 +55,9 @@
     <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-     <script src="<?php echo base_url();?>assets/js/datepicker/bootstrap-datepicker.js"></script>
-
+    <script src="<?php echo base_url();?>assets/js/datepicker/bootstrap-datepicker.js"></script>
+    <script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
+    <script src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/script.js"></script>
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete

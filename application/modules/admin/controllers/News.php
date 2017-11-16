@@ -11,10 +11,11 @@ class News extends MX_Controller
 //=========================================================================================================   
 	public function __construct()
 	{
-		parent::__construct();
+		 parent::__construct();
 		 check_admin_login();
 		 $this->load->model('news_model');
          $this->load->model('general_model','general');
+         $this->form_validation->CI= &$this;
 
 	}
 
@@ -28,9 +29,9 @@ class News extends MX_Controller
         $data['button_action']='admin/news/create';
         $data['button']='Add News';
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News',' News List'=>'');
-        $data['edit']=base_url().'/admin/news/edit/';
-        $data['delete']=base_url().'/admin/news/delete/';
-        $data['fields']=array('SN','Title','Author','Publish Date','Status','Action');
+        $data['edit']=base_url().'admin/news/edit/';
+        $data['delete']=base_url().'admin/news/delete/';
+        $data['fields']=array('SN','Title','Slug','Author','Publish Date','Status','Action');
         $records=$this->news_model->getAll($this->table);
         foreach ($records as $key => $value) {
             $records[$key]->publish_date=user_format($value->publish_date);
@@ -50,6 +51,8 @@ class News extends MX_Controller
         $data['table_name']="<strong>Add</strong> News";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News','Add News'=>'');
         $data['action']='admin/news/createAction';
+        $data['cat_id']="";
+        $data['options']=$this->_get_all_parent_cat_for_dropdown();
         $this->template->load('template','create_news',$data);
 
 
@@ -59,10 +62,12 @@ class News extends MX_Controller
 
     public function createAction()
     {
+       
 
-            $this->form_validation->set_rules('title','News Title','required');
+            $this->form_validation->set_rules('title','News Title','required|callback_title_check');
             $this->form_validation->set_rules('author','Author Name','required');
             $this->form_validation->set_rules('content','News Contents','required');
+            $this->form_validation->set_rules('cat_id','Category','required|numeric');
             $this->form_validation->set_rules('publish_date','Publish Date','required');
             if($this->form_validation->run()==FALSE)
             {
@@ -72,6 +77,13 @@ class News extends MX_Controller
             }else
             {
                 $data=$this->input->post();
+                $slug=$data['slug'];
+                $title=$data['title'];
+                $data['slug']=($slug=='')? url_title($title,'-',TRUE):$slug;
+                $data['slug']=$data['slug'].'-'.time();
+                
+
+
                 $this->general->insert($this->table, $data);
                 $task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
                 $status = 'success';
@@ -82,6 +94,9 @@ class News extends MX_Controller
 
      }
 
+
+
+
 //=======================================================================================================
 
      public function edit($id)
@@ -90,22 +105,73 @@ class News extends MX_Controller
         $data['table_name']="<strong>Edit</strong> News";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News','Edit News'=>'');
         $data['action']='admin/news/update/'.$id;
+        $data['options']=$this->_get_all_parent_cat_for_dropdown();
         $data['datas']=$this->news_model->get($this->table,$id);
+        $data['cat_id']=$data['datas']->cat_id;
         $this->template->load('template','create_news',$data);
 
      }
 
 
 
-     public function update()
+     public function update($id)
      {
-        $data=$this->input->post();
-        dumparray($data);
-        $this->general->update($this->table,$data,array('id'=>$id));
-        $task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
-        $status = 'success';
-        set_message($status,$task);
-        redirect(base_url('admin').'/'.$this->module);
+            $this->form_validation->set_rules('title','News Title','required|callback_title_check');
+            $this->form_validation->set_rules('author','Author Name','required');
+            $this->form_validation->set_rules('content','News Contents','required');
+            $this->form_validation->set_rules('cat_id','Category','required|numeric');
+            $this->form_validation->set_rules('publish_date','Publish Date','required');
+            if($this->form_validation->run()==FALSE)
+            {
+                
+                $this->edit($id);
+
+            }else
+            {
+                $data=$this->input->post();
+                $slug=$data['slug'];
+                $title=$data['title'];
+                $data['slug']=($slug=='')? url_title($title,'-',TRUE).time():$slug;
+                if(!isset($data['status']))
+                {
+                    $data['status']='unpublish';
+                }
+
+        
+                
+        
+            $this->general->update($this->table,$data,array('id'=>$id));
+            $task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
+            $status = 'success';
+            set_message($status,$task);
+            redirect(base_url('admin').'/'.$this->module);
+    }
+     }
+
+//================cheking duplicate news title===========================================================
+     
+     public function title_check($str)
+     {
+        $update_id=$this->uri->segment(4);
+        $mysql_query="select * from default_news where title='$str'";
+        if(is_numeric($update_id))
+        {
+            $mysql_query.=" and id!='$update_id'";
+        }
+        $query=$this->news_model->custom_query($mysql_query);
+        $num_rows=$query->num_rows();
+        if($num_rows>0)
+        {
+            $this->form_validation->set_message('title_check','The news title already exist!.');
+            return FALSE;
+
+        }else
+        {
+
+        }
+        
+
+
      }
 
 
@@ -123,15 +189,13 @@ class News extends MX_Controller
         $data['delete']=base_url().'admin/news/delete_category/';
         $data['fields']=array('SN','Title','Parent','Priority','Status','Action');
         $records=$this->news_model->getCategory();
-    dumparray($records);
         foreach ($records as $k=>$v) 
         {
-          $records[$k]->parent_cat_id=$this->_get_parent_cat_title($v->id);
            
+          $records[$k]->parent_cat_id=$this->_get_parent_cat_title($v->id);
         }
 
-
-       if(FALSE!=$records):
+        if(FALSE!=$records):
             $records=check_status($records);
         endif;
         $data['datas']=$records;
@@ -227,6 +291,62 @@ class News extends MX_Controller
      {
         return $this->news_model->getParentId($id);
      }
+
+
+    function _get_all_parent_cat_for_dropdown()
+    {
+        $mysql_query="select * from default_news_category where parent_cat_id=0 order by parent_cat_id,cat_title";
+        $query=$this->news_model->custom_query($mysql_query);
+        $options['']="Please select...";
+        foreach($query->result() as $row)
+        {
+           
+          $options[$row->id]=$row->cat_title;
+        }
+        if(!isset($options))
+        {
+            $options="";
+        }
+        
+        return $options;
+    }
+
+
+    function get_sub_cat_title()
+    {
+         $parent_cat_id=$this->input->post('data');
+         $sub_cat=$this->input->post('sub_cat');
+
+         $mysql_query="select * from default_news_category where parent_cat_id=$parent_cat_id";
+         $query=$this->news_model->custom_query($mysql_query);
+
+         if(count($query->result())>0)
+         {
+         
+         $html="<label for='Title'>Sub Category</label>";
+         $html.="<div class='row'><div class='col-md-4'>";
+         $html.="<select name='sub_cat_id' class='form-control'>";
+         foreach($query->result() as $row):
+            // $html.="<option value='".$row->id."' ". ($sub_cat==$row->id)?'checked':'' .">".$row->cat_title."</option>";
+
+            $html .= "<option";
+            $html .= " value='{$row->id}' ";
+            $html .= ($sub_cat==$row->id) ? 'selected' :'';
+            $html .= " >{$row->cat_title}</option>";
+
+
+         endforeach;
+         $html.="</select>";
+         $html.=" </div></div>";
+         
+         
+        }else
+        {
+            $html="";
+        }
+        echo $html;
+
+    }
 
 
 //=======================================================================================================

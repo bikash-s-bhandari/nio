@@ -5,11 +5,12 @@ if(!defined('BASEPATH'))
 class News_model extends CI_Model
 {
 
-    public $parent_cat;
+    
 	public function getAll($table)
 	{
-		$query=$this->db->select('id,title,author,publish_date,status')
+		$query=$this->db->select('id,title,slug,author,publish_date,status')
 		->from($table)
+		->order_by('id','DESC')
 		->get();
 		$result=$query->result();
 		return (isset($result) && !empty($result))? $result:array();
