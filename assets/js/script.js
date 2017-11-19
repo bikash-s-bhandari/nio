@@ -20,12 +20,11 @@ $('p#pass').fadeOut(5000);
 $('p#cpass').fadeOut(5000);
 
 
-//datepicker
 
 
+/*date picker*/
 $('#newsDate').datepicker({
         startDate: 'today',
-
         autoclose: true,
         format: 'yyyy-mm-dd',
         todayHighlight: true
@@ -49,6 +48,7 @@ function getSubCat(id)
 
 }
 
+/*editing the news for category*/
 var id=$('#parent_cat').val();
 if(id)
 {
@@ -71,7 +71,42 @@ if(id)
 
 }
 
+/*form validations*/
 $('#create_news').validate();
+$('#create_landmark').validate();
+$('#page_category').validate();
+$('#news_category').validate();
+$('#create_user').validate();
+
+/*for model popup*/
+$('.user_detail').on('click',function(){
+    var user_id=$(this).data("id");
+     $('#user-details').removeData();
+     $('#user-details').modal();
+     $.ajax({
+        type:'POST',
+        url:base_url+'admin/user/user_details',
+        dataType:'json',
+        data:{id:user_id},
+        success:function(response)
+        {
+            $('#firstname').val(response.first_name);
+            $('#middlename').val(response.middle_name);
+            $('#lastname').val(response.last_name);
+            $('#username').val(response.username);
+            $('#email').val(response.email);
+            $('#ipaddress').val(response.ip_address);
+            $('#status').val(response.status);
+            $('#created_at').val(response.created_at);
+            console.log(response.first_name);
+        }
+
+     });
+
+
+});
+
+
 
     
 

@@ -6,7 +6,7 @@ class News extends MX_Controller
 	private $table='news';
     private $module='News';
     private $title='News Manage';
-    private $nav = '';
+    private $nav = 'news';
 
 //=========================================================================================================   
 	public function __construct()
@@ -24,6 +24,7 @@ class News extends MX_Controller
 
 	public function index()
 	{
+        $data['nav']=$this->nav;
         $data['title']=$this->title;
         $data['table_name']='<strong>News</strong> List';
         $data['button_action']='admin/news/create';
@@ -47,6 +48,7 @@ class News extends MX_Controller
 
     public function create()
     {
+        $data['nav']=$this->nav;
         $data['title']="Add News";
         $data['table_name']="<strong>Add</strong> News";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News','Add News'=>'');
@@ -101,6 +103,7 @@ class News extends MX_Controller
 
      public function edit($id)
      {
+        $data['nav']=$this->nav;
         $data['title']="Edit News";
         $data['table_name']="<strong>Edit</strong> News";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News','Edit News'=>'');
@@ -180,6 +183,7 @@ class News extends MX_Controller
  	
  	public function category()
  	{
+        $data['nav']=$this->nav;
  		$data['title']="News Category";
         $data['button_action']='admin/news/create_category';
         $data['button']='Add Category';
@@ -206,7 +210,7 @@ class News extends MX_Controller
 
     public function create_category()
     {
-
+        $data['nav']=$this->nav;
         $data['title']="Add New Category";
         $data['table_name']="<strong>Add</strong> Category";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News','Add Category'=>'');
@@ -353,7 +357,7 @@ class News extends MX_Controller
 
      public function edit_category($id)
      {
-
+        $data['nav']=$this->nav;
         $data['title']="Edit Category";
         $data['table_name']="<strong>Edit</strong> Category";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'News','Edit Category'=>'');

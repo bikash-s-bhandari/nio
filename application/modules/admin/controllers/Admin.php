@@ -46,8 +46,10 @@ class Admin extends CI_Controller
 					'username'=>$result->username,
 					'fname'=>$result->fname,
 					'lname'=>$result->lname,
+					'role'=>get_role($result->role_id),
 					'is_logged_in'=>TRUE
 					);
+
 
 				$this->session->set_userdata('admin_user',$data);
 
@@ -81,9 +83,10 @@ class Admin extends CI_Controller
 
 	public function profile()
 	{
+		check_admin_login();
+		$data['nav']="";
 		$data['title']="Profile";
-		$data['user']=$this->admin_model->getInfo();
-
+		$data['user']=$this->admin_model->getInfo($this->session->userdata('admin_user')['user_id']);
 		$this->template->load('template','profile',$data);
 
 	}
@@ -125,6 +128,19 @@ class Admin extends CI_Controller
 		$update=$this->admin_model->update_pass($this->session->userdata('admin_user')['user_id'],$data);
 		if($update)
 		{
+		     
+		     /*updating session*/
+		     $update_session=array(
+		     	'user_id'=>$this->session->userdata('admin_user')['user_id'],
+		     	'email'=>$this->session->userdata('admin_user')['email'],
+		     	'username'=>$this->session->userdata('admin_user')['username'],
+		     	'role'=>$this->session->userdata('admin_user')['role'],
+		     	'fname'=>$this->input->post('fname'),
+		     	'lname'=>$this->input->post('lname'),
+		     	'is_logged_in'=>$this->session->userdata('admin_user')['is_logged_in']
+		     );
+		     $this->session->set_userdata('admin_user',$update_session);
+		     // dumparray($this->session->userdata('admin_user'));
 			$this->session->set_flashdata('success','Profile Updated Successfully!');
 			redirect(base_url().'/admin/profile');
 		}

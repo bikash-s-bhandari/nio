@@ -7,7 +7,7 @@ class Landmark extends MX_Controller
 	private $table='landmarks';
     private $module='Landmark';
     private $title='Landmark Manage';
-    private $nav = '';
+    private $nav = 'landmark';
 
 //====================================================================================================
 
@@ -25,8 +25,8 @@ class Landmark extends MX_Controller
 
 	public function index()
 	{
-
-		$data['title']=$this->title;
+		$data['nav']=$this->nav;
+        $data['title']=$this->title;
 		$data['table_name']='<strong>Landmark</strong> List';
 		$data['button_action']='admin/landmark/create';
         $data['button']='Add Landmark';
@@ -49,8 +49,8 @@ class Landmark extends MX_Controller
 
 	public function create()
 	{
-
-        $data['title']="Add New Landmark";
+		$data['nav']=$this->nav;
+	    $data['title']="Add New Landmark";
         $data['table_name']="<strong>Add</strong> Landmark";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Add Landmark'=>'');
         $data['action']='admin/landmark/createAction';
@@ -88,7 +88,7 @@ class Landmark extends MX_Controller
 	
 	public function edit($id)
    	{
-	   
+	    $data['nav']=$this->nav;
 	    $data['title']="Edit Landmark";
         $data['table_name']="<strong>Edit</strong> Landmark";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Edit Landmark'=>'');

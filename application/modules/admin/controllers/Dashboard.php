@@ -20,6 +20,7 @@ class Dashboard extends CI_Controller {
 	 public function index() 
 	 	{
 	        $data['title'] = 'Dashboard';
+          $data['nav']="dashboard";
 	        $this->template->load('template', 'content', $data);
 	    }
 

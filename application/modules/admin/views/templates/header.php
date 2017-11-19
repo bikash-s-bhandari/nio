@@ -1,4 +1,4 @@
- <body class="hold-transition skin-blue sidebar-mini">
+ <body class="hold-transition skin-purple sidebar-mini">
     <div class="wrapper">
     <!--<input type="hiden" id="base-url" value="<?php echo base_url();  ?>"/>-->
 

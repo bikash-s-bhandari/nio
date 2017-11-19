@@ -39,10 +39,11 @@ class Admin_model extends CI_Model
 	}
 
 
-	public function getInfo()
+	public function getInfo($id)
 	{
 		$query=$this->db->select('id,fname,lname')
 		->from('admin')
+		->where('id',$id)
 		->get();
 		return $query->row();
 	}

@@ -43,5 +43,27 @@ class Page_model extends CI_Model
             return $query->result();
         }
 	}
+
+
+	public function getCategory()
+	{
+		$query=$this->db->select('id,cat_title,priority,status')
+		->from('page_category')
+		->order_by('priority','DESC')
+		->get();
+		$result=$query->result();
+		return (isset($result) && !empty($result))? $result:array();
+	}
+
+	public function getCatById($id)
+	{
+		$query=$this->db->select('*')
+		->from('page_category')
+		->where('id',$id)
+		->get();
+		$result=$query->row();
+		return (isset($result) && !empty($result))? $result:array();
+
+	}
 	
 }

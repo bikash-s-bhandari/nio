@@ -5,12 +5,25 @@ exit('No direct script access allowed');
 // for user authentication
 function check_admin_login()
 {
+
 	$ci=&get_instance();
+	if(!isset($ci->session->userdata('admin_user')['user_id']))
+	{
+		redirect(base_url('admin'),'refresh');
 
+	}
+    elseif(!$ci->session->userdata('admin_user'))
+    {
+    	redirect(base_url('admin'),'refresh');
 
-	if(!$ci->session->userdata('admin_user')):
-        redirect(base_url('admin'),'refresh');
-	endif;
+    }
+    	
+    	
+    		
+
+    	
+        
+	
 } 
 
 
@@ -207,28 +220,7 @@ function spilt_format($date)
     }
 }
 
-//getting navigation_group list in form of associative array for dropdown
 
-function get_nav_header()
-{
-	$ci=&get_instance();
-	$query=$ci->db->get('navigation_groups')->result();
-	$array[0]='Select Navigation Group';
-	foreach ($query as $key => $value)
-	 {
-	 	$array[$value->id]=$value->title;
-		
-	 }
-	 return $array;
-}
-
-
-function get_nav_groups()
-{
-	$ci=&get_instance();
-	return $ci->db->get('navigation_groups')->result();
-
-}
 
 
 
@@ -285,6 +277,9 @@ function get_category_id() {
  return $array;
 }
 
+
+
+
 function get_cat_id($news_id)
 {
 	$ci = & get_instance();
@@ -293,6 +288,34 @@ function get_cat_id($news_id)
 	->where('id',$news_id)
 	->get();
 	return $query->row();
+
+}
+
+
+/*generating random string*/
+function generate_random_string($length)
+	{
+		$characters="23456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$randomString="";
+		for($i=0;$i<$length;$i++)
+		{
+			$randomString.=$characters[rand(0,strlen($characters)-1)];
+
+		}
+	
+		return $randomString;
+	}
+
+/*get user role*/
+
+function get_role($id)
+{
+	$ci = & get_instance();
+	$query=$ci->db->select('*')
+	->from('roles')
+	->where('id',$id)
+	->get();
+	return $query->row()->role;
 
 }
 

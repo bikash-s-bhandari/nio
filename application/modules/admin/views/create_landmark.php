@@ -34,21 +34,24 @@
                   <h3 class="box-title"><?=$table_name; ?></h3>
                 </div><!-- /.box-header -->
                 <!-- form start -->
-            <?php  echo form_open($action); ?>
+            <?php 
+            $attributes = array('id' => 'create_landmark');
+             echo form_open($action,$attributes); 
+             ?>
                   <div class="box-body">
                     <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
-                      <input type="text" name="title" value="<?php if($isEdit) echo $datas->title;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Landmark Title">
+                      <input type="text" name="title" value="<?php if($isEdit) echo $datas->title;  ?>" class="form-control" placeholder="Landmark Title" required>
                       <span style="color:red"><?php echo form_error('title'); ?></span>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Email</label>
-                      <input type="text" name="email" value="<?php if($isEdit) echo $datas->email;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Email Address">
+                      <input type="email" name="email" required value="<?php if($isEdit) echo $datas->email;  ?>" class="form-control" placeholder="Email Address">
                       <span style="color:red"><?php echo form_error('email'); ?></span>
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Address</label>
-                      <input type="text" name="address" value="<?php if($isEdit) echo $datas->address;  ?>" class="form-control" id="pac-input" placeholder="Address">
+                      <input type="text" name="address" value="<?php if($isEdit) echo $datas->address;  ?>" class="form-control" id="pac-input" placeholder="Address" required>
                       <span style="color:red"><?php echo form_error('address'); ?></span>
                     </div>
                     <div class="form-group">

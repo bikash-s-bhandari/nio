@@ -18,7 +18,6 @@ class Settings extends CI_Controller
 
     public function index()
     {
-
         $data['nav']='settings';
         $data['title']="Settings";
         $data['module']=$this->module;
