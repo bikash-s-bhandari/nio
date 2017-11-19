@@ -76,7 +76,7 @@ class Landmark extends MX_Controller
 			{
 				$data=$this->input->post();
 				$this->general->insert($this->table, $data);
-				$task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
+				$task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
 		        $status = 'success';
 		        set_message($status,$task);
 		        redirect(base_url().'admin/landmark');
@@ -113,7 +113,7 @@ class Landmark extends MX_Controller
     
 	    $data=$this->input->post();
 	    $this->general->update($this->table,$data,array('id'=>$id));
-	    $task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
+	    $task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
 	    $status = 'success';
 	    set_message($status,$task);
 	    redirect(base_url('admin').'/'.$this->module);

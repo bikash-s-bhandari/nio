@@ -22,13 +22,13 @@
               <!-- small box -->
               <div class="small-box bg-yellow">
                 <div class="inner">
-                  <h3>0</h3>
+                  <h3><?php if(empty($user_count)){echo '0';}else{ echo number_format($user_count);}  ?></h3>
                   <p>Registered Users</p>
                 </div>
                 <div class="icon">
                   <i class="ion ion-person-add"></i>
                 </div>
-                <a href="<?php echo base_url('admin');?>/user/create" class="small-box-footer">Click Here <i class="fa fa-arrow-circle-right"></i></a>
+                <a href="<?php echo base_url('admin');?>/user" class="small-box-footer">Click Here <i class="fa fa-arrow-circle-right"></i></a>
               </div>
             </div><!-- ./col -->
             

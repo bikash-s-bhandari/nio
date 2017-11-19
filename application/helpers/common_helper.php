@@ -19,12 +19,7 @@ function check_admin_login()
     }
     	
     	
-    		
-
-    	
-        
-	
-} 
+  } 
 
 
 //printing array structure
@@ -224,14 +219,13 @@ function spilt_format($date)
 
 
 
-//inserting data to database
+
 
 function save($table,$data)
 {
 	
 	$ci=&get_instance();
 	$ci->db->insert($table,$data);
-
 	return;
 
 }
@@ -244,9 +238,6 @@ function update($table,$data,$condition)
 	return;
 
 }
-
-
-
 
 function delete($table, $id) {
     $ci = & get_instance();
@@ -266,20 +257,38 @@ function set_message($status,$task)
 	
 }
 
-function get_category_id() {
-	$array=array();
-    $ci = & get_instance();
-  $sql = $ci->db->get('gallery')->result();
 
-    foreach ($sql as $k => $v):
-        $array[$v->id] = $v->title;
-    endforeach;
- return $array;
+/*navigation group listing*/
+function get_nav_groups()
+{
+	$ci=&get_instance();
+	$array['']="------------";
+	$sql=$ci->db->get('navigation_groups')->result();
+	foreach ($sql as $k=> $v) {
+		$array[$v->id]=$v->title;
+
+		
+	}
+	return $array;
+}
+
+/*category listing*/
+function get_navigation_list()
+{
+	$ci=&get_instance();
+	$array['']="------------";
+	$sql=$ci->db->get('page_navigation')->result();
+	foreach ($sql as $k=> $v) {
+		$array[$v->id]=$v->title;
+
+		
+	}
+	return $array;
 }
 
 
 
-
+/*getting news category id*/
 function get_cat_id($news_id)
 {
 	$ci = & get_instance();

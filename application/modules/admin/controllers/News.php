@@ -87,7 +87,7 @@ class News extends MX_Controller
 
 
                 $this->general->insert($this->table, $data);
-                $task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
+                $task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
                 $status = 'success';
                 set_message($status,$task);
                 redirect(base_url().'admin/news');
@@ -144,7 +144,7 @@ class News extends MX_Controller
                 
         
             $this->general->update($this->table,$data,array('id'=>$id));
-            $task = "<div class='alert bg-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
+            $task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
             $status = 'success';
             set_message($status,$task);
             redirect(base_url('admin').'/'.$this->module);
@@ -236,7 +236,7 @@ class News extends MX_Controller
 
                 $data=$this->input->post();
                 $this->general->insert('news_category', $data);
-                $task = "<div class='alert bg-success'><strong>Success!</strong> catrgory added successfully.</div>";
+                $task = "<div class='alert alert-success'><strong>Success!</strong> catrgory added successfully.</div>";
                 $status = 'success';
                 set_message($status,$task);
                 redirect(base_url().'admin/news/category');
@@ -386,7 +386,7 @@ class News extends MX_Controller
      {
             $data=$this->input->post();
             $this->general->update('news_category',$data,array('id'=>$id));
-            $task = "<div class='alert bg-success'><strong>Success!</strong> category updated successfully.</div>";
+            $task = "<div class='alert alert-success'><strong>Success!</strong> category updated successfully.</div>";
             $status = 'success';
             set_message($status,$task);
             redirect(base_url('admin').'/'.'news/category');

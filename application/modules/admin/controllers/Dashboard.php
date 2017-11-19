@@ -21,7 +21,8 @@ class Dashboard extends CI_Controller {
 	 	{
 	        $data['title'] = 'Dashboard';
           $data['nav']="dashboard";
-	        $this->template->load('template', 'content', $data);
+          $data['user_count']=$this->db->count_all_results('users');
+          $this->template->load('template', 'content', $data);
 	    }
 
  //======================================================================================================= 

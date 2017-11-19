@@ -24,7 +24,7 @@
           <section class="content">
           
           <?php if($this->session->flashdata('success')): ?>
-            <div><?= $this->session->flashdata('success'); ?></div>
+            <?= $this->session->flashdata('success'); ?>
 
             <?php endif;  ?>
 

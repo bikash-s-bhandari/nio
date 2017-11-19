@@ -8,7 +8,7 @@ class Page extends MX_Controller
     private $title='Page Manage';
     private $nav = 'page';
 
-//=============================================================================================================
+//==========================================================================================================================
 	
     public function __construct()
 	{
@@ -19,6 +19,7 @@ class Page extends MX_Controller
          check_admin_login();
 	}
 
+//===========================================================================================================================
 
    public function index()
 	{
@@ -27,116 +28,73 @@ class Page extends MX_Controller
         $data['button'] = 'Add New Page';
         $data['button_action'] ='admin/page/create';
         $data['module'] = $this->module;
-        $data['breadcrumb'] = array('Dashboard' => 'dashboard', $data['module'] => 'page', 'Page List' => '');
+        $data['breadcrumb'] = array('Dashboard' => 'Dashboard', $data['module'] => 'Page', 'Page List' => '');
         $data['table_name'] = '<strong>Page</strong> List';
         $data['edit'] = base_url().'admin/page/edit/';
         $data['delete'] = base_url().'admin/page/delete/';
-        $data['fields'] = array('SN', 'Title', 'Slug', 'URL', 'Action');
+        $data['fields'] = array('SN', 'Title', 'Slug','Category','Action');
         $data['datas'] = $this->page_model->getAll();
         $this->template->load('template', 'view_list', $data);
 
         
 	}
 
+//===========================================================================================================================
 
      public function  create()
       {
         $data['nav']=$this->nav;
     	$data['title']='Create Page';
     	$data['module']=$this->module;
-    	$data['breadcrumb']=array('dashboard'=>'dashboard',$data['module']=>'Page','Create Page'=>'');
+        $data['breadcrumb']=array('dashboard'=>'dashboard',$data['module']=>'Page','Create Page'=>'');
     	$data['table_name']='<strong>Create</strong> Page';
-		$form['action'] = 'admin/page/create';
-        $form['label'] = 'Create Page';
-        $form['purpose'] = 'Create';
-        $form['attribute'] = '';
-        $form['fields']=$this->form_builder_array();
-        $data['form']=form_builder($form);
-        $data['form_id']='page';
+		$data['action'] = 'admin/page/create';
+        $data['nav_id']="";
+        $data['options']=get_navigation_list();
+        
 
 		if($this->input->post()):
         	$data=$this->input->post();
 
-
-
-        
-       
-
-        $page_data=array
+         $page_data=array
             (
                 'title'=>$data['title'],
-                'navigation_link'=>lcfirst($data['navigation_link']),
-                'class'=>$data['class'],
+                'nav_id'=>$data['nav_id'],
                 'status'=>$data['status'],
-                'navigation_link_id'=>'',
-                'body' => ucfirst($data['body']),
-                'image_link' => $data['link_image'],
+                'content' =>$data['content'],
+                'image_link' => $data['image_link'],
                 'meta_title' => $data['meta_title'],
-                'meta_keywords' => $data['meta_keyword'],
+                'meta_keywords' => $data['meta_keywords'],
                 'meta_description' => $data['meta_description'],
-                'custom_css' => $data['custom_css'],
-                'javascript' => $data['javascript'],
-                'is_home' => $home,
-                'created_by' =>'' ,
+                'created_by' =>$this->session->userdata('admin_user')['user_id']
                 );
         //creating auto slug
-        $page_slug=$this->input->post('slug');// or $page_slug=$data['slug'];
+        $page_slug=$this->input->post('slug');
         $page_title=$data['title'];
         $page_data['slug']=($page_slug=='')? url_title($page_title,'-',TRUE):$page_slug;
-
-      
         save('pages',$page_data);
-
-        $page_id=$this->db->insert_id();
-
-        //inserting the navigation when page is created
-
-        $nav_data=array
-            (
-                'title'=>ucfirst($data['title']),
-                'nav_group_id'=>$data['navigation_group_id'],
-                'url'=>$data['navigation_link'],
-                'page_id'=>$page_id,
-                'class'=>'fa-home',
-                'target'=>''
-            );
-
-            save('navigation_link',$nav_data);
-
-            $nav_id=$this->db->insert_id();
-
-            $condition=array('key'=>'id','value'=>$page_id);
-
-            update('pages',array('navigation_link_id'=>$nav_id),$condition);
-        $task = "<div class='alert bg-success'><strong>Success!</strong> Page added successfully.</div>";
-            $status = 'success';
-       redirect(BACKENDFOLDER.'/page');
-       else:
-     $this->template->load('template','create',$data);
-      endif;
+        redirect(base_url().'admin/page');
+        else:
+        $this->template->load('template','create_page',$data);
+        endif;
     }
 
 
 
-
+//============================================================================================================================
 
   public function edit($id)
     {
         $data['nav']=$this->nav;
     	$data['title'] = 'Edit Page';
         $data['module'] = $this->module;
-        $data['breadcrumb'] = array('Dashboard' => 'dashboard', $data['module'] => 'page', 'Edit Page' => '');
+        $data['breadcrumb'] = array('Dashboard' => 'dashboard', $data['module'] => 'Page', 'Edit Page' => '');
         $data['table_name'] = '<strong>Page</strong> Edit';
-		$form['action'] = BACKENDFOLDER.'/page/update/' . $id;
-        $form['label'] = 'Edit Page';
-        $form['purpose'] = 'Update';
-        $form['attribute'] = '';
-        $data['form_id']='page';
-        $pages=$this->page_model->get_page_by_id($id);
-       	$pages=(array)$pages;
-       	$form['fields']=$this->form_builder_array($pages);
-       	$data['form']=form_builder($form);
-       	$this->template->load('template','create',$data);
+		$data['action'] ='admin/page/update/' . $id;
+        $data['datas']=$this->page_model->getPageById($id);
+        $data['nav_id']=$data['datas']->nav_id;
+        $data['options']=get_navigation_list();
+        $this->template->load('template','create_page',$data);
 
 
 
@@ -147,48 +105,27 @@ class Page extends MX_Controller
     public function update($id)
     {
     	$data = $this->input->post();
-
-
-        if(isset($data['is_home'])):
-            $home=1;
-        else:
-            $home=0;
-        endif;
-
-        $page_data=array(
+        $page_data=array
+            (
                 'title'=>$data['title'],
-                'navigation_link'=>lcfirst($data['navigation_link']),
-                'class'=>$data['class'],
+                'nav_id'=>$data['nav_id'],
                 'status'=>$data['status'],
-                'body' => $data['body'],
-                'image_link' => $data['link_image'],
+                'content' =>$data['content'],
+                'image_link' => $data['image_link'],
                 'meta_title' => $data['meta_title'],
-                'meta_keywords' => $data['meta_keyword'],
+                'meta_keywords' => $data['meta_keywords'],
                 'meta_description' => $data['meta_description'],
-                'custom_css' => $data['custom_css'],
-                'javascript' => $data['javascript'],
-                'is_home' => $home,
-            );
+                'created_by' =>$this->session->userdata('admin_user')['user_id']
+                );
         $page_slug=$data['slug'];
         $page_title=$data['title'];
         $page_data['slug']= ($page_slug=='')? url_title($page_title,'-',TRUE):$page_slug;
-
-        $nav_data=array(
-            'title'=>$data['title'],
-            'nav_group_id'=>$data['navigation_group_id'],
-            'url'=>$data['navigation_link']
-            );
-        //getting navigation_list_id of page
-        $navigation_id=$this->page_model->get_page_by_id($id);
-    
-        $cond=array('key'=>'id','value'=> $navigation_id->navigation_link_id);
-        update('navigation_link',$nav_data,$cond);
         $condition=array('key'=>'id','value'=>$id);
         update('pages',$page_data,$condition);
-        $status = "<div class='alert bg-success'><strong>Success!</strong> Page updated successfully.</div>";
+        $status = "<div class='alert alert-success'><strong>Success!</strong> Page updated successfully.</div>";
         $task = 'success';
         set_message($task, $status);
-        redirect(BACKENDFOLDER.'/page');
+        redirect(base_url().'admin/page');
 
 
 
@@ -196,23 +133,17 @@ class Page extends MX_Controller
 
 
 
-     public function delete($id)
+   public function delete($id)
     {
 
-    $navigation_id=$this->page_model->get_page_by_id($id);
-    $nav_id=$navigation_id->navigation_link_id;
     delete('pages',$id);
-    delete('navigation_link',$nav_id);
     redirect(base_url().'admin/page');
-    
-
-
     }
 
 
 
 
-//=============================================================================================================
+//===============================================Creating Navigations=============================================
 
     
     public function category()
@@ -225,7 +156,7 @@ class Page extends MX_Controller
         $data['breadcrumb']=array('Dashboard'=>'Dashboard','Pages'=>'Category','Category List'=>'');
         $data['edit']=base_url().'admin/page/edit_category/';
         $data['delete']=base_url().'admin/page/delete_category/';
-        $data['fields']=array('SN','Title','Priority','Status','Action');
+        $data['fields']=array('SN','Title','Nav Group','Priority','Status','Action');
         $records=$this->page_model->getCategory();
         if(FALSE!=$records):
             $records=check_status($records);
@@ -243,14 +174,15 @@ class Page extends MX_Controller
         $data['table_name']="<strong>Add</strong> Category";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Page','Add Category'=>'');
         $data['action']='admin/page/add_category';
-        $data['cat_id']="";
+        $data['nav_id']="";
+        $data['options']=get_nav_groups();
         $this->template->load('template','create_page_category',$data);
     }
 
 
     public function add_category()
     {
-        $this->form_validation->set_rules('cat_title','Category Title','required');
+        $this->form_validation->set_rules('title','Category Title','required');
          if($this->form_validation->run()==FALSE)
             {
                 
@@ -259,9 +191,10 @@ class Page extends MX_Controller
             }else
             {
 
+
                 $data=$this->input->post();
-                $this->general->insert('page_category', $data);
-                $task = "<div class='alert bg-success'><strong>Success!</strong> catrgory added successfully.</div>";
+                $this->general->insert('page_navigation', $data);
+                $task = "<div class='alert alert-success'><strong>Success!</strong> Navigation added successfully.</div>";
                 $status = 'success';
                 set_message($status,$task);
                 redirect(base_url().'admin/page/category');
@@ -277,6 +210,8 @@ class Page extends MX_Controller
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Page','Edit Category'=>'');
         $data['action']='admin/page/update_category/'.$id;
         $data['datas']=$this->page_model->getCatById($id);
+        $data['nav_id']=$data['datas']->nav_group_id;
+        $data['options']=get_nav_groups();
 
             if(empty($data['datas']))
             {
@@ -292,23 +227,117 @@ class Page extends MX_Controller
      public function update_category($id)
      {
             $data=$this->input->post();
-            $this->general->update('page_category',$data,array('id'=>$id));
-            $task = "<div class='alert bg-success'><strong>Success!</strong> category updated successfully.</div>";
+            $this->general->update('page_navigation',$data,array('id'=>$id));
+            $task = "<div class=' alert alert-success'><strong>Success!</strong> Navigation updated successfully.</div>";
             $status = 'success';
             set_message($status,$task);
             redirect(base_url('admin').'/'.'page/category');
      }
+
 
 //=======================================================================================================
     
     public function delete_category($id)
     {
 
-     $this->general->delete('page_category',array('id'=>$id));
+     $this->general->delete('page_navigation',array('id'=>$id));
      redirect('admin/page/category');
 
     }
 
+//=======================================================================================================
+
+   public function nav_group()
+   {
+        $data['nav']=$this->nav;
+        $data['title']="Navigation Group";
+        $data['button_action']='admin/page/create_nav_group';
+        $data['button']='Add Navigation Group';
+        $data['table']='Group List';
+        $data['breadcrumb']=array('Dashboard'=>'Dashboard','Pages'=>'Nav Group','Group List'=>'');
+        $data['edit']=base_url().'admin/page/edit_nav_group/';
+        $data['delete']=base_url().'admin/page/delete_nav_group/';
+        $data['fields']=array('SN','Title','Slug','Priority','Status','Action');
+        $records=$this->page_model->getNavigationGroup();
+        if(FALSE!=$records):
+            $records=check_status($records);
+        endif;
+        $data['datas']=$records;
+        $this->template->load('template','view_list',$data);
+
+
+   }
+
+
+//========================================================================================================
+
+   public  function create_nav_group()
+   {
+        $data['nav']=$this->nav;
+        $data['title']="Add Nav Group";
+        $data['table_name']="<strong>Add</strong> Nav Group";
+        $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Page','Add Group'=>'');
+        $data['action']='admin/page/create_nav_group';
+        if($this->input->post()):
+            $data=$this->input->post();
+            $data['abbrev']=($data['abbrev']=="")? url_title($data['title'],'-',TRUE):$data['abbrev'];
+            $this->general->insert('navigation_groups', $data);
+            $task = "<div class='alert alert-success'><strong>Success!</strong> catrgory added successfully.</div>";
+            $status = 'success';
+            set_message($status,$task);
+            redirect(base_url().'admin/page/nav_group');
+
+
+        else:
+        $this->template->load('template','create_navigation_group',$data);
+        endif;
+
+   } 
+
+//===============================================================================================================
+  
+   public function edit_nav_group($id)
+   {
+        $data['nav']=$this->nav;
+        $data['title']="Edit Nav Group";
+        $data['table_name']="<strong>Edit</strong> Nav Group";
+        $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Page','Edit Nav Group'=>'');
+        $data['action']='admin/page/update_navigation_group/'.$id;
+        $data['datas']=$this->page_model->getNavGroupById($id);
+
+            if(empty($data['datas']))
+            {
+                redirect('admin/error404');
+            }
+            else
+            {
+                $this->template->load('template','create_navigation_group',$data);
+            }
+
+   }
+
+
+  public function update_navigation_group($id)
+     {
+            $data=$this->input->post();
+            $data['abbrev']=($data['abbrev']=="")? url_title($data['title'],'-',TRUE):$data['abbrev'];
+            $this->general->update('navigation_groups',$data,array('id'=>$id));
+            $task = "<div class=' alert alert-success'><strong>Success!</strong> Navigation Group updated successfully.</div>";
+            $status = 'success';
+            set_message($status,$task);
+            redirect(base_url('admin').'/'.'page/nav_group');
+     }
+
+
+//=======================================================================================================
+    
+    public function delete_nav_group($id)
+    {
+
+     $this->general->delete('navigation_groups',array('id'=>$id));
+     redirect('admin/page/nav_group');
+
+    }  
 
 
 

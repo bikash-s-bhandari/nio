@@ -61,15 +61,18 @@
                          <td><?= $data->first_name; ?></td>
                           <td><?=  $data->last_name;?></td>
                           <td><?=  $data->email;?></td>
-                          <td><?= $data->status;?></td>
+                          <?php if($data->status=='In Active'){?>
+                          <td><span class="bg-red" style="text-align:center;width:100px; display:inline-block;border-radius: 3px"><?= $data->status;?></span> &nbsp;<a onclick="return confirm('Do you want to activate this account?')" href="<?php echo base_url();?>admin/user/activate/<?= $data->id; ?>" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+                           <?php } else if($data->status=='Active') { ?>
+                           <td><span class="bg-green" style="text-align:center;width:100px; display:inline-block;border-radius: 3px"><?= $data->status;?></span> &nbsp;<a onclick="return confirm('Do you want to deactivate this account?')" href="<?php echo base_url();?>admin/user/deactivate/<?= $data->id; ?>" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
+
+                           <?php } ?>
+
+
+
+
                           <td>
-                        <?php if($data->status=='In Active'){?>
-                          <a href="<?php echo base_url();?>admin/user/activate/<?= $data->id; ?>" class="btn btn-success btn-xs">Activate Now</a>
-                        <?php } else if($data->status=='Active') { ?>
-                          <a href="<?php echo base_url();?>admin/user/deactivate/<?= $data->id; ?>" class="btn btn-danger btn-xs">De-Activate Now</a>
-                      <?php } ?>
-                           
-                                  &nbsp; <a href="javascript:void()" class="btn btn-default btn-sm user_detail" title="View Details" data-id="<?php echo $data->id; ?>"><i class="fa fa-eye"></i></a>
+                       &nbsp; <a href="javascript:void()" class="btn btn-default btn-sm user_detail" title="View Details" data-id="<?php echo $data->id; ?>"><i class="fa fa-eye"></i></a>
                                               
                          </td></tr>
                        <?php endforeach; ?>

@@ -1,9 +1,6 @@
 <?php $isEdit=isset($datas)? TRUE:FALSE;    ?>
-
-  <!-- Content Wrapper. Contains page content -->
-      <div class="content-wrapper">
-        <!-- Content Header (Page header) -->
-        <section class="content-header">
+ <div class="content-wrapper">
+       <section class="content-header">
           <h1>
            Page Management
 
@@ -35,32 +32,26 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
                  <?php
-                  $attributes = array('id' => 'page_category');  
+                  $attributes = array('id' => 'page_group');  
                  echo form_open($action,$attributes); 
                  ?>
-
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Navigation Group</label>
-                      <div class="row">
-                        <div class="col-md-6">
-                      <?php 
-                         $js='class="form-control" required';
-                         
-                         echo form_dropdown('nav_group_id',$options,$nav_id,$js);
-                       ?>
-                     </div>
-                     </div>
-                    </div>
-                     <div class="form-group">
+                  <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
-                      <input type="text" name="title" value="<?php if($isEdit) echo $datas->title;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Category Title" required>
-                      <span style="color:red"><?php echo form_error('title'); ?></span>
-                    </div>
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Priority</label>
-                      <input type="text" name="priority" value="<?php if($isEdit) echo $datas->priority;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Priority">
+                      <input type="text" name="title" value="<?php if($isEdit) echo $datas->title;  ?>" class="form-control" id="" placeholder="Group Title" required>
+                     
+                  </div>
+
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Slug</label>
+                      <input type="text" name="abbrev" value="<?php if($isEdit) echo $datas->abbrev;  ?>" class="form-control" id="" placeholder="Slug">
                       
-                    </div>
+                  </div>
+
+                  <div class="form-group">
+                      <label for="exampleInputEmail1">Priority</label>
+                      <input type="text" name="priority" value="<?php if($isEdit) echo $datas->priority;  ?>" class="form-control" id="" placeholder="Priority">
+                      
+                  </div>
                    
                     </div>
                         <div class="form-group">

@@ -29,7 +29,7 @@ class User extends CI_Controller
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'User',' User List'=>'');
         $data['view']=base_url().'admin/user/view/';
         $data['delete']=base_url().'admin/user/delete/';
-        $data['fields']=array('SN','First Name','Last Name','Email','Status','Action');
+        $data['fields']=array('SN','First Name','Last Name','Email','Status','View');
         $records=$this->user_model->getAllUsers();
         if(FALSE!=$records):
             $records=check_status($records);
@@ -129,7 +129,7 @@ class User extends CI_Controller
 
 
 		 $this->general->insert('admin', $data);
-         $task = "<div class='alert bg-success'><strong>Success!</strong> User added successfully.</div>";
+         $task = "<div class='alert alert-success'><strong>Success!</strong> User added successfully.</div>";
          $status = 'success';
          set_message($status,$task);
          redirect(base_url().'admin/user/admin_user');
@@ -165,7 +165,7 @@ class User extends CI_Controller
 			      );
     	
 		$this->general->update('admin',$data,array('id'=>$id));
-        $task = "<div class='alert bg-success'><strong>Success!</strong> User updated successfully.</div>";
+        $task = "<div class='alert alert-success'><strong>Success!</strong> User updated successfully.</div>";
         $status = 'success';
         set_message($status,$task);
         redirect(base_url('admin').'/user/admin_user');

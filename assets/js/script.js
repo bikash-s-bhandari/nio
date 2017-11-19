@@ -19,6 +19,9 @@ function load_ckeditor(textarea, customConfig) {
 $('p#pass').fadeOut(5000);
 $('p#cpass').fadeOut(5000);
 
+/*alert message hide*/
+$('.alert-success').fadeOut(5000);
+
 
 
 
@@ -77,6 +80,8 @@ $('#create_landmark').validate();
 $('#page_category').validate();
 $('#news_category').validate();
 $('#create_user').validate();
+$('#page_group').validate();
+$('#page_create').validate();
 
 /*for model popup*/
 $('.user_detail').on('click',function(){

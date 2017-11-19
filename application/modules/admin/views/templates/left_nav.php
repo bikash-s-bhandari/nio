@@ -110,8 +110,10 @@
               <ul class="treeview-menu">
                 <li><a  href="<?php echo base_url('admin/page');?>"><i class="fa fa-file"></i>Pages</a></li>
                 <li><a href="<?php echo base_url('admin/page/create');?>"><i class="fa fa-plus-circle"></i>Add New Pages</a></li>
-                <li><a href="<?php echo base_url('admin/page/category');?>"><i class="fa fa-file"></i>Categories</a></li>
-                <li><a href="<?php echo base_url('admin/page/create_category');?>"><i class="fa fa-plus-circle"></i> Add New Category</a></li>
+                <li><a href="<?php echo base_url('admin/page/category');?>"><i class="fa fa-file"></i>Navigations</a></li>
+                <li><a href="<?php echo base_url('admin/page/create_category');?>"><i class="fa fa-plus-circle"></i> Add New Navigation</a></li>
+                <li><a href="<?php echo base_url('admin/page/nav_group');?>"><i class="fa fa-file"></i>Navigation Groups</a></li>
+                <li><a href="<?php echo base_url('admin/page/create_nav_group');?>"><i class="fa fa-plus-circle"></i> Add Navigation Group</a></li>
                 
               </ul>
             </li>
