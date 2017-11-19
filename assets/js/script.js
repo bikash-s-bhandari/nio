@@ -82,6 +82,7 @@ $('#news_category').validate();
 $('#create_user').validate();
 $('#page_group').validate();
 $('#page_create').validate();
+$('#landmark_category').validate();
 
 /*for model popup*/
 $('.user_detail').on('click',function(){

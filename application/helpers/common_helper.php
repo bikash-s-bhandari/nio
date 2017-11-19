@@ -272,7 +272,7 @@ function get_nav_groups()
 	return $array;
 }
 
-/*category listing*/
+/*page category listing*/
 function get_navigation_list()
 {
 	$ci=&get_instance();
@@ -286,6 +286,22 @@ function get_navigation_list()
 	return $array;
 }
 
+/*landmarks category*/
+
+function get_landmark_categories()
+{
+
+	$ci=&get_instance();
+	$array['']="------------";
+	$sql=$ci->db->get('landmark_category')->result();
+	foreach ($sql as $k=> $v) {
+		$array[$v->id]=$v->cat_title;
+
+		
+	}
+	return $array;
+
+}
 
 
 /*getting news category id*/

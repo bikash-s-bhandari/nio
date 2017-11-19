@@ -53,6 +53,7 @@
                     <div class="form-group">
                       <label for="Title">Slug</label>
                       <input type="text" class="form-control" name="slug" value="<?php if($isEdit) echo $datas->slug; ?>"  placeholder="Slug">
+                      <p class="help-block">Leave blank to auto create slug. </p>
                       
                     </div>
                     <div class="form-group">

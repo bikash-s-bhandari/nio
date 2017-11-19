@@ -39,6 +39,19 @@
              echo form_open($action,$attributes); 
              ?>
                   <div class="box-body">
+                     <div class="form-group">
+                      <label for="exampleInputEmail1">Category</label>
+                      <div class="row">
+                        <div class="col-md-6">
+                      <?php 
+                         $js='class="form-control" required';
+                         
+                         echo form_dropdown('cat_id',$options,$cat_id,$js);
+                       ?>
+                     </div>
+                     </div>
+                    </div>
+
                     <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
                       <input type="text" name="title" value="<?php if($isEdit) echo $datas->title;  ?>" class="form-control" placeholder="Landmark Title" required>

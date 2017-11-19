@@ -9,7 +9,7 @@ class Landmark extends MX_Controller
     private $title='Landmark Manage';
     private $nav = 'landmark';
 
-//====================================================================================================
+//=========================================================================================================================
 
 	public function __construct()
 	{
@@ -21,7 +21,7 @@ class Landmark extends MX_Controller
 	}
 
 
-//====================================================================================================
+//==========================================================================================================================
 
 	public function index()
 	{
@@ -33,7 +33,7 @@ class Landmark extends MX_Controller
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Landmark List'=>'');
         $data['edit']=base_url().'/admin/landmark/edit/';
         $data['delete']=base_url().'/admin/landmark/delete/';
-        $data['fields']=array('SN','Title','Status','Action');
+        $data['fields']=array('SN','Title','Category','Status','Action');
         $records=$this->landmark_model->getAll($this->table);
         if(FALSE!=$records):
             $records=check_status($records);
@@ -44,7 +44,7 @@ class Landmark extends MX_Controller
 
 	}
 
-//====================================================================================================
+//==========================================================================================================================
 
 
 	public function create()
@@ -54,6 +54,8 @@ class Landmark extends MX_Controller
         $data['table_name']="<strong>Add</strong> Landmark";
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Add Landmark'=>'');
         $data['action']='admin/landmark/createAction';
+        $data['cat_id']="";
+        $data['options']=get_landmark_categories();
 		$this->template->load('template','create_landmark',$data);
 
     	
@@ -84,7 +86,7 @@ class Landmark extends MX_Controller
 			}
 		}
 
-//====================================================================================================
+//=========================================================================================================================
 	
 	public function edit($id)
    	{
@@ -94,6 +96,8 @@ class Landmark extends MX_Controller
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Edit Landmark'=>'');
 	    $data['action']='admin/landmark/update/'.$id;
 	    $data['datas']=$this->landmark_model->get($this->table,$id);
+	    $data['cat_id']=$data['datas']->cat_id;
+        $data['options']=get_landmark_categories();
 
 	        if(empty($data['datas']))
 	        {
@@ -120,14 +124,115 @@ class Landmark extends MX_Controller
 
   	}
 
- //====================================================================================================
+ //=======================================================================================================================
 
- function delete($id)
- {
+	 public function delete($id)
+	 {
+	    
+	    $this->general->delete($this->table,array('id'=>$id));
+	    redirect('admin/landmark');
+	 }
+
+
+ //=======================================================================================================================
+
+public function category()
+    {
+        $data['nav']=$this->nav;
+        $data['title']="Landmark Category";
+        $data['button_action']='admin/landmark/create_category';
+        $data['button']='Add Category';
+        $data['table']='Category List';
+        $data['breadcrumb']=array('Dashboard'=>'Dashboard','Landmark'=>'Category','Category List'=>'');
+        $data['edit']=base_url().'admin/landmark/edit_category/';
+        $data['delete']=base_url().'admin/landmark/delete_category/';
+        $data['fields']=array('SN','Title','Slug','Priority','Status','Action');
+        $records=$this->landmark_model->getCategory();
+        if(FALSE!=$records):
+            $records=check_status($records);
+        endif;
+        $data['datas']=$records;
+        $this->template->load('template','view_list',$data);
+    }
+
+//================================================================================================================
+
+    public function create_category()
+    {
+        $data['nav']=$this->nav;
+        $data['title']="Add New Category";
+        $data['table_name']="<strong>Add</strong> Category";
+        $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Add Category'=>'');
+        $data['action']='admin/landmark/add_category';
+        $this->template->load('template','create_landmark_category',$data);
+    }
+
+
+    public function add_category()
+    {
+        $this->form_validation->set_rules('cat_title','Category Title','required');
+         if($this->form_validation->run()==FALSE)
+            {
+                
+                $this->create_category();
+
+            }else
+            {
+			    $data=$this->input->post();
+			    $data['slug']=($data['slug']=="")? url_title($data['cat_title'],'-',TRUE):$data['slug'];
+			    
+                $this->general->insert('landmark_category', $data);
+                $task = "<div class='alert alert-success'><strong>Success!</strong> Category added successfully.</div>";
+                $status = 'success';
+                set_message($status,$task);
+                redirect(base_url().'admin/landmark/category');
+            }
+    }
+
+//==================================================================================================================
     
-    $this->general->delete($this->table,array('id'=>$id));
-    redirect('admin/landmark');
- }
+   public function edit_category($id)
+     {
+        $data['nav']=$this->nav;
+        $data['title']="Edit Category";
+        $data['table_name']="<strong>Edit</strong> Category";
+        $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'Landmark','Edit Category'=>'');
+        $data['action']='admin/landmark/update_category/'.$id;
+        $data['datas']=$this->landmark_model->getCatById($id);
+        if(empty($data['datas']))
+            {
+                redirect('admin/error404');
+            }
+            else
+            {
+                $this->template->load('template','create_landmark_category',$data);
+            }
+        }
+
+
+     public function update_category($id)
+     {
+            $data=$this->input->post();
+            $data['slug']=($data['slug']=="")? url_title($data['cat_title'],'-',TRUE):$data['slug'];
+            $this->general->update('landmark_category',$data,array('id'=>$id));
+            $task = "<div class=' alert alert-success'><strong>Success!</strong> Category updated successfully.</div>";
+            $status = 'success';
+            set_message($status,$task);
+            redirect(base_url('admin').'/'.'landmark/category');
+     }
+
+
+//=======================================================================================================
+    
+    public function delete_category($id)
+    {
+
+     $this->general->delete('landmark_category',array('id'=>$id));
+     redirect('admin/landmark/category');
+
+    }
+
+   
 
 
 

@@ -5,7 +5,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-           News Management
+           Landmark Management
 
         </h1>
           <ol class="breadcrumb">
@@ -35,46 +35,30 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
             <?php  
-             $attributes = array('id' => 'news_category'); 
+             $attributes = array('id' => 'landmark_category'); 
             echo form_open($action,$attributes); ?>
                   <div class="box-body">
-                    <?php if($num_dropdown_options>1):   ?>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Parent Category</label>
-                      <div class="row">
-                        <div class="col-md-4">
-                      <?php 
-                         $js='class="form-control"';
-                         
-                         echo form_dropdown('parent_cat_id',$options,$parent_cat_id,$js);
-                       ?>
-                     </div>
-                     </div>
-                    </div>
-                  <?php endif;  ?>
-
-                    <div class="form-group">
-                      <label for="exampleInputEmail1">Title</label>
+                      <label for="title">Title</label>
                       <input type="text" name="cat_title" value="<?php if($isEdit) echo $datas->cat_title;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Category Title" required>
                       <span style="color:red"><?php echo form_error('cat_title'); ?></span>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Priority</label>
-                      <input type="text" name="priority" value="<?php if($isEdit) echo $datas->priority;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Priority">
+                      <label for="slug">Slug</label>
+                      <input type="text" name="slug" value="<?php if($isEdit) echo $datas->slug;  ?>" class="form-control" id="" placeholder="Slug">
+                      <p class="help-block">Leave blank to auto create slug. </p>
+                    </div>
+                    <div class="form-group">
+                      <label for="priority">Priority</label>
+                      <input type="text" name="priority" value="<?php if($isEdit) echo $datas->priority;  ?>" class="form-control" id="" placeholder="Priority">
                       <span style="color:red"><?php echo form_error('email'); ?></span>
                     </div>
-                      <div class="form-group">
+                       <div class="form-group">
                       <label>Status</label>
-                     <div class="form-group">
-                      <div class="radio">
+                    <div class="radio">
                         <label>
-                          <input type="radio" name="status" id="optionsRadios1" value="1"
-                          <?php
-                              if($isEdit) {if($datas->status==1)
-                                          {
-                                            echo 'checked';}
-                                        
-                                        }
+                          <input type="radio" name="status" id="" value="1"
+                          <?php if($isEdit) {if($datas->status==1){echo 'checked'; }}
                                         else
                                         {
                                           echo 'checked';
@@ -88,29 +72,24 @@
                         <label>
                           <input type="radio" name="status" id="optionsRadios2" value="0"
                           <?php
-                              if($isEdit) 
-                                       {
-                                          if($datas->status==0)
+                              if($isEdit) {if($datas->status==0)
                                           {
-                                            echo 'checked'; 
-
+                                            echo 'checked';
                                           }
-                                        
                                         }
                                         
                                         ?>
-
-
-                          >
-                          In Active
+                                        >In Active
                         </label>
                       </div>
                       
+                    
                     </div>
-                    </div>
+
+
                    
                     </div>
-                      
+                 
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
