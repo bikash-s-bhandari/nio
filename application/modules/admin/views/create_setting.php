@@ -78,8 +78,7 @@
               Remove </a>
             </div>
           </div>
-                      
-                    </div>
+        </div>
                     
                     <div class="form-group">
                       <label for="exampleInputEmail1">Contact Email</label>

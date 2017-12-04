@@ -59,6 +59,12 @@
                       <span style="color:red"><?php echo form_error('cat_title'); ?></span>
                     </div>
                     <div class="form-group">
+                      <label for="exampleInputEmail1">Slug</label>
+                      <input type="text" name="slug" value="<?php if($isEdit) echo $datas->slug;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Slug">
+                      <p class="help-block">Leave blank to auto create slug. </p>
+                      
+                    </div>
+                    <div class="form-group">
                       <label for="exampleInputEmail1">Priority</label>
                       <input type="text" name="priority" value="<?php if($isEdit) echo $datas->priority;  ?>" class="form-control" id="exampleInputEmail1" placeholder="Priority">
                       <span style="color:red"><?php echo form_error('email'); ?></span>

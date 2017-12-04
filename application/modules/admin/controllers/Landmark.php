@@ -49,6 +49,7 @@ class Landmark extends MX_Controller
 
 	public function create()
 	{
+
 		$data['nav']=$this->nav;
 	    $data['title']="Add New Landmark";
         $data['table_name']="<strong>Add</strong> Landmark";
@@ -65,6 +66,7 @@ class Landmark extends MX_Controller
 	public function  createAction()
 	{
 
+
 			$this->form_validation->set_rules('title','Title','required');
 			$this->form_validation->set_rules('email','Email','required|valid_email');
 			$this->form_validation->set_rules('address','Address','required');
@@ -76,12 +78,24 @@ class Landmark extends MX_Controller
 
 			}else
 			{
-				$data=$this->input->post();
+
+
+                $data=$this->input->post();
+                
+                if(!empty($_FILES['userfile']['name']))
+                {
+                    $logo_name=$this->general->upload_file('landmark');
+                    $data['image']=$logo_name;
+                }
+
 				$this->general->insert($this->table, $data);
 				$task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
 		        $status = 'success';
 		        set_message($status,$task);
 		        redirect(base_url().'admin/landmark');
+
+
+
 
 			}
 		}
@@ -90,6 +104,7 @@ class Landmark extends MX_Controller
 	
 	public function edit($id)
    	{
+
 	    $data['nav']=$this->nav;
 	    $data['title']="Edit Landmark";
         $data['table_name']="<strong>Edit</strong> Landmark";
@@ -116,6 +131,21 @@ class Landmark extends MX_Controller
 	{
     
 	    $data=$this->input->post();
+
+
+        if(isset($_FILES) && $_FILES['userfile']['name']!='')
+        {
+            $logo_name=$this->general->upload_file('landmark');
+            $this->general->unlink_img('landmark',$this->input->post('prev_image'));
+           
+        }
+        else
+        {
+            $logo_name=$this->input->post('prev_image');
+        }
+        $data['image']=$logo_name;
+        unset($data['prev_image']);
+   
 	    $this->general->update($this->table,$data,array('id'=>$id));
 	    $task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module. " Updated successfully.</div>";
 	    $status = 'success';
@@ -128,7 +158,7 @@ class Landmark extends MX_Controller
 
 	 public function delete($id)
 	 {
-	    
+	    $this->general->del_image('landmarks',array('id' => $id),'landmark');
 	    $this->general->delete($this->table,array('id'=>$id));
 	    redirect('admin/landmark');
 	 }
@@ -179,6 +209,14 @@ public function category()
             }else
             {
 			    $data=$this->input->post();
+
+                 if(!empty($_FILES['userfile']['name']))
+                {
+                    $logo_name=$this->general->upload_file('landmark/category');
+                    $data['image']=$logo_name;
+
+                }
+
 			    $data['slug']=($data['slug']=="")? url_title($data['cat_title'],'-',TRUE):$data['slug'];
 			    
                 $this->general->insert('landmark_category', $data);
@@ -212,7 +250,19 @@ public function category()
 
      public function update_category($id)
      {
-            $data=$this->input->post();
+        $data=$this->input->post();
+            if(isset($_FILES) && $_FILES['userfile']['name']!='')
+            {
+                $logo_name=$this->general->upload_file('landmark/category');
+                $this->general->unlink_img('landmark/category',$this->input->post('prev_image'));
+               
+            }
+            else
+            {
+                $logo_name=$this->input->post('prev_image');
+            }
+            $data['image']=$logo_name;
+            unset($data['prev_image']);
             $data['slug']=($data['slug']=="")? url_title($data['cat_title'],'-',TRUE):$data['slug'];
             $this->general->update('landmark_category',$data,array('id'=>$id));
             $task = "<div class=' alert alert-success'><strong>Success!</strong> Category updated successfully.</div>";
@@ -226,11 +276,31 @@ public function category()
     
     public function delete_category($id)
     {
-
+     $this->general->del_image('landmark_category',array('id' => $id),'landmark/category');
      $this->general->delete('landmark_category',array('id'=>$id));
      redirect('admin/landmark/category');
 
     }
+
+
+//========================================================================================================
+
+public function upload_logo()
+{
+
+$photo_src = $_FILES['photo']['tmp_name'];
+// test if the photo realy exists
+if (is_file($photo_src)) {
+    // photo path in our example
+    $photo_dest = base_url().'nio/uploads/landmark/logo_'.time().'.jpg';
+    // copy the photo from the tmp path to our path
+    copy($photo_src, $photo_dest);
+    // call the show_popup_crop function in JavaScript to display the crop popup
+    echo '<script type="text/javascript">window.top.window.show_popup_crop("'.$photo_dest.'")</script>';
+}
+
+
+}    
 
    
 

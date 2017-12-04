@@ -1,6 +1,5 @@
 <?php $isEdit=isset($datas)? TRUE:FALSE;    ?>
-
-  <!-- Content Wrapper. Contains page content -->
+ <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -35,7 +34,7 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
             <?php 
-            $attributes = array('id' => 'create_landmark');
+            $attributes = array('id' => 'create_landmark','enctype'=>"multipart/form-data");
              echo form_open($action,$attributes); 
              ?>
                   <div class="box-body">
@@ -52,7 +51,7 @@
                      </div>
                     </div>
 
-                    <div class="form-group">
+                <div class="form-group">
                       <label for="exampleInputEmail1">Title</label>
                       <input type="text" name="title" value="<?php if($isEdit) echo $datas->title;  ?>" class="form-control" placeholder="Landmark Title" required>
                       <span style="color:red"><?php echo form_error('title'); ?></span>
@@ -64,16 +63,47 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Address</label>
-                      <input type="text" name="address" value="<?php if($isEdit) echo $datas->address;  ?>" class="form-control" id="pac-input" placeholder="Address" required>
+                      <input type="text" name="address" value="<?php if($isEdit) echo $datas->address;  ?>" class="form-control" id="pac-input" placeholder="Address" required onchange="geocode()">
                       <span style="color:red"><?php echo form_error('address'); ?></span>
+                    </div>
+                    <div class="form-group" id="longitude">
+                    </div>
+                    <div class="form-group" id="latitude">
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Website</label>
                       <input type="text" name="website" value="<?php if($isEdit) echo $datas->website;  ?>" class="form-control"  placeholder="Website URL">
                        
-                    </div>
-                    </div>
-                        <div class="form-group">
+              </div>
+          <div class="form-group">
+            <label for="exampleInputEmail1">Logo</label>
+            <?php if ($isEdit) { ?>
+                                <input type="hidden" value="<?php echo $datas->image; ?>" name="prev_image"/>
+                            <?php } ?>
+
+            <div class="fileinput fileinput-new" data-provides="fileinput">
+            <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;">
+             
+            <?php if($isEdit):   ?>
+              <img src="<?php echo base_url().'uploads/'.'landmark/'.$datas->image; ?>">
+            <?php endif; ?>   
+                          
+            </div>
+            <div>
+              <span class="btn default btn-file">
+              <span class="fileinput-new">
+              Select image </span>
+              <span class="fileinput-exists">
+              Change </span>
+              <input type="file" name="userfile">
+              </span>
+              <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">
+              Remove </a>
+            </div>
+          </div>
+        </div>
+         
+         <div class="form-group">
                       <label>Status</label>
                      <div class="form-group">
                       <div class="radio">
@@ -122,6 +152,9 @@
                       
                     </div>
                     </div>
+
+                    </div>
+                       
                   </div><!-- /.box-body -->
 
                   <div class="box-footer">
@@ -138,7 +171,8 @@
             </div><!--/.col (left) -->
             <!-- right column -->
 
-          </div>   <!-- /.row -->
+         
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
  
+    

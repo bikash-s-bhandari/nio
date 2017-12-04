@@ -47,7 +47,9 @@
                         <?php foreach ($fields as $field)
                          {
                           echo '<th class="sorting_asc" tabindex="0" aria-controls="example1" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Rendering engine: activate to sort column descending" style="width: 177px;">'.$field.'</th>';
-                         }   ?>
+                         }  
+                          ?>
+                         
 
                         </tr>
                                              
@@ -74,7 +76,11 @@
                           <td>
                        &nbsp; <a href="javascript:void()" class="btn btn-default btn-sm user_detail" title="View Details" data-id="<?php echo $data->id; ?>"><i class="fa fa-eye"></i></a>
                                               
-                         </td></tr>
+                         </td>
+                         
+
+
+                       </tr>
                        <?php endforeach; ?>
 
                      </tbody>

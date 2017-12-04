@@ -37,6 +37,28 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-fileinput/bootstrap-fileinput.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/js/datepicker/datepicker3.css">
+   <!--  <link rel="stylesheet" href="<?php //echo base_url();?>assets/dist/css/jquery.Jcrop.min.css">
+    <link rel="stylesheet" href="<?php// echo base_url();?>assets/dist/css/style.css">  -->
+
+    <style type="text/css">
+        
+       
+        div.row
+        {
+            padding: 10px;
+        }
+
+        .header
+        {
+            background-color:#605ca8;
+            color: #FFF;
+            font-weight: bold;
+        }
+        .panel
+        {
+            border-color:#605ca8;
+        }
+    </style>
 
 
     </head>

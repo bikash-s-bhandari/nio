@@ -7,6 +7,7 @@ function check_admin_login()
 {
 
 	$ci=&get_instance();
+	
 	if(!isset($ci->session->userdata('admin_user')['user_id']))
 	{
 		redirect(base_url('admin'),'refresh');
@@ -320,7 +321,7 @@ function get_cat_id($news_id)
 /*generating random string*/
 function generate_random_string($length)
 	{
-		$characters="23456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
+		$characters="!$#@23456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
 		$randomString="";
 		for($i=0;$i<$length;$i++)
 		{

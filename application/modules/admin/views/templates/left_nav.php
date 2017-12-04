@@ -48,10 +48,16 @@
               <a href="<?php echo base_url('admin');?>/settings">
                 <i class="fa fa-gears"></i>
                 <span>App Setting</span>
-              
               </a>
-             
             </li>
+
+            <li class="<?php if($nav=='currency') echo 'active';?> treeview">
+              <a href="<?php echo base_url('admin')?>/currency">
+                <i class="fa fa-money" aria-hidden="true"></i>
+                <span>Curreny Converter</span>
+              </a>
+            </li>
+
             <li class="<?php if($nav=='users'){echo "active";}?> treeview">
               <a href="#">
                 <i class="fa fa-users"></i>

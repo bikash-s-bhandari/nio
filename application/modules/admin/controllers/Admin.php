@@ -31,10 +31,12 @@ class Admin extends CI_Controller
 
 	public function check_login()
 	{
+
 		$username=$this->input->post('email');
 		$email=$this->input->post('email');
 		$password=$this->input->post('password');
 		$result=$this->admin_model->login($username,$email,$password);
+
 
 		if(isset($result->id))
 		{
@@ -51,11 +53,11 @@ class Admin extends CI_Controller
 					);
 
 
-				$this->session->set_userdata('admin_user',$data);
-
-
-				
-				redirect(base_url().'admin/dashboard');
+//$this->session->set_userdata($data);
+//dumparray($this->session->userdata());
+			$this->session->set_userdata('admin_user',$data);
+		    // dumparray($this->session->userdata('admin_user'));
+                redirect(base_url().'admin/dashboard');
 			}
 		      else
 		      {
@@ -67,7 +69,9 @@ class Admin extends CI_Controller
 		}
 		elseif($result==INVALID_EMAIL)
 		{
+
 			$this->session->set_flashdata('error',INVALID_EMAIL);
+
 		      	redirect(base_url('admin'));
 			
 		}

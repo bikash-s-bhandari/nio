@@ -43,6 +43,7 @@ class General_model extends CI_Model {
 
 
         $config['upload_path'] = config_item('upload_path') . $folder;
+
         $config['allowed_types'] = "gif|jpg|jpeg|png";
         $config['max_size'] = 0;
         $config['max_width'] = 0;
@@ -62,14 +63,14 @@ class General_model extends CI_Model {
             $finfo = $this->upload->data();
             $thumb = $finfo['raw_name'] . $finfo['file_ext'];
 
-            //resample image
-            $ww = $w == '' ? config_item('img_width') : $w;
-            $hh = $h == '' ? config_item('img_height') : $h;
-            $this->load->library('image_moo');
-            $this->image_moo->load('uploads/' . $folder . '/' . $thumb);
-            $this->image_moo->resize_crop($ww, $hh);
-            $thumbimg = 'uploads/' . $folder . '/thumbs/' . $thumb;
-            $this->image_moo->save($thumbimg, $overwrite = TRUE);
+           //  //resample image
+           //  $ww = $w == '' ? config_item('img_width') : $w;
+           //  $hh = $h == '' ? config_item('img_height') : $h;
+           //  $this->load->library('image_moo');
+           // // $this->image_moo->load('uploads/' . $folder . '/' . $thumb);
+           // // $this->image_moo->resize_crop($ww, $hh);
+           //  //$thumbimg = 'uploads/' . $folder . '/thumbs/' . $thumb;
+           //  $this->image_moo->save($thumbimg, $overwrite = TRUE);
         }
         return $thumb;
     }

@@ -235,6 +235,7 @@ class News extends MX_Controller
             {
 
                 $data=$this->input->post();
+                $data['slug']=($data['slug']=="")? url_title($data['cat_title'],'-',TRUE):$data['slug'];
                 $this->general->insert('news_category', $data);
                 $task = "<div class='alert alert-success'><strong>Success!</strong> catrgory added successfully.</div>";
                 $status = 'success';
@@ -385,6 +386,7 @@ class News extends MX_Controller
      public function update_category($id)
      {
             $data=$this->input->post();
+            $data['slug']=($data['slug']=="")? url_title($data['cat_title'],'-',TRUE):$data['slug'];
             $this->general->update('news_category',$data,array('id'=>$id));
             $task = "<div class='alert alert-success'><strong>Success!</strong> category updated successfully.</div>";
             $status = 'success';

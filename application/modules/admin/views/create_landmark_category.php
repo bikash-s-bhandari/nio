@@ -1,6 +1,5 @@
 <?php $isEdit=isset($datas)? TRUE:FALSE;    ?>
-
-  <!-- Content Wrapper. Contains page content -->
+<!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
         <!-- Content Header (Page header) -->
         <section class="content-header">
@@ -35,7 +34,7 @@
                 </div><!-- /.box-header -->
                 <!-- form start -->
             <?php  
-             $attributes = array('id' => 'landmark_category'); 
+             $attributes = array('id' => 'landmark_category','enctype'=>"multipart/form-data"); 
             echo form_open($action,$attributes); ?>
                   <div class="box-body">
                     <div class="form-group">
@@ -53,7 +52,34 @@
                       <input type="text" name="priority" value="<?php if($isEdit) echo $datas->priority;  ?>" class="form-control" id="" placeholder="Priority">
                       <span style="color:red"><?php echo form_error('email'); ?></span>
                     </div>
-                       <div class="form-group">
+                    <div class="form-group">
+                      <label for="exampleInputEmail1">Logo</label>
+                      <?php if ($isEdit) { ?>
+                                <input type="hidden" value="<?php echo $datas->image; ?>" name="prev_image"/>
+                            <?php } ?>
+
+                    <div class="fileinput fileinput-new" data-provides="fileinput">
+                    <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;">
+                     
+                    <?php if($isEdit):   ?>
+                      <img src="<?php echo base_url().'uploads/'.'landmark/category/'.$datas->image; ?>">
+                    <?php endif; ?>   
+                                  
+                    </div>
+                    <div>
+                      <span class="btn default btn-file">
+                      <span class="fileinput-new">
+                      Select image </span>
+                      <span class="fileinput-exists">
+                      Change </span>
+                      <input type="file" name="userfile">
+                      </span>
+                      <a href="javascript:;" class="btn red fileinput-exists" data-dismiss="fileinput">
+                      Remove </a>
+                    </div>
+                  </div>
+                </div>
+                <div class="form-group">
                       <label>Status</label>
                     <div class="radio">
                         <label>
@@ -106,7 +132,7 @@
             </div><!--/.col (left) -->
             <!-- right column -->
 
-          </div>   <!-- /.row -->
+         
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
  
