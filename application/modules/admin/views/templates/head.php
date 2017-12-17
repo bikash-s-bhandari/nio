@@ -25,20 +25,21 @@
     <!-- Morris chart -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/morris/morris.css">
     <!-- jvectormap -->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.css">
+   
     <!-- Date Picker -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datepicker/datepicker3.css">
     <link rel="stylesheet" type="text/css" href="<?php echo base_url();?>assets/plugins/bootstrap-datepicker/css/bootstrap-datepicker3.min.css"/>
 
     <!-- Daterange picker -->
-    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/daterangepicker/daterangepicker-bs3.css">
+    
     <!-- bootstrap wysihtml5 - text editor -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-fileinput/bootstrap-fileinput.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/js/datepicker/datepicker3.css">
-   <!--  <link rel="stylesheet" href="<?php //echo base_url();?>assets/dist/css/jquery.Jcrop.min.css">
-    <link rel="stylesheet" href="<?php// echo base_url();?>assets/dist/css/style.css">  -->
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/js/datepicker/bootstrap-datetimepicker.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/timepicker/bootstrap-timepicker.min.css">
+
 
     <style type="text/css">
         

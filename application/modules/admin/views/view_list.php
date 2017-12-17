@@ -66,7 +66,7 @@
                           foreach($data as $key=>$v):
                            if($key=='id'):
                              elseif($key=='image'):
-                               echo '<td><img src="' . base_url('uploads/banners') . '/' . $v . '" width="100"></td>';
+                               echo '<td><img src="' . base_url('uploads/sliders/thumbs') . '/' . $v . '" width="100"></td>';
                              elseif($key=='photo'):
                               echo '<td><img src="' . base_url('uploads/staff_photo') . '/' . $v . '" width="100"></td>';
                             

@@ -304,6 +304,20 @@ function get_landmark_categories()
 
 }
 
+function get_counselor_categories()
+{
+	$ci=&get_instance();
+	$array['']="------------";
+	$sql=$ci->db->get('counselor_category')->result();
+	foreach ($sql as $k=> $v) {
+		$array[$v->id]=$v->cat_title;
+
+		
+	}
+	return $array;
+
+}
+
 
 /*getting news category id*/
 function get_cat_id($news_id)

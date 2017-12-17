@@ -1,25 +1,17 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Front_model extends CI_Model 
 {
-
-
-
 	public function get_user()
 	{
 		$users_id  = $this->input->get_request_header('User-ID', TRUE);
-		$query=$this->db->select('id,full_name,email,address,photo')
+		$query=$this->db->select('id,first_name,middle_name,last_name,username,email,last_login,photo')
 		->from('users')
 		->where('id',$users_id)
 		->get();
-		$result['user_profile']=$query->row();
+		$result=$query->row();
 	    return (isset($result) && !empty($result))? $result:array();
-
-
 	}
-
-
 	public function get_all_news()
 	{
 			$query=$this->db->select('id,title,content,author,publish_date')
@@ -30,10 +22,7 @@ class Front_model extends CI_Model
 			->get();
 			$result['news']=$query->result();
 			return (isset($result) && !empty($result))? $result:array();
-
     }
-
-
     public function get_landmark_cat()
     {
     	$query=$this->db->select('id,cat_title,image')
@@ -43,9 +32,7 @@ class Front_model extends CI_Model
 			->get();
 			$result=$query->result();
 			return (isset($result) && !empty($result))? $result:array();
-
     }
-
     public function get_landmarks()
     {
     	$query=$this->db->select('lm.*,lc.cat_title as category')
@@ -57,8 +44,5 @@ class Front_model extends CI_Model
     	$result['landmarks']=$query->result();
 		return (isset($result) && !empty($result))? $result:array();
 	}
-
 	
-
-
 }

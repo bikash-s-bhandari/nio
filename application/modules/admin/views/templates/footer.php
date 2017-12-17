@@ -1,9 +1,4 @@
- 
-
-          
     </div><!-- ./wrapper -->
-
-
     <!-- jQuery 2.1.4 -->
     <script src="<?php echo base_url();?>assets/plugins/jQuery/jQuery-2.1.4.min.js"></script>
 
@@ -25,21 +20,17 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/raphael/2.1.0/raphael-min.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/morris/morris.min.js"></script>
     <!-- Sparkline -->
-    <script src="<?php echo base_url();?>assets/plugins/sparkline/jquery.sparkline.min.js"></script>
-    <!-- jvectormap -->
-    <script src="<?php echo base_url();?>assets/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
-    <script src="<?php echo base_url();?>assets/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+  
+
     <!-- jQuery Knob Chart -->
     <script src="<?php echo base_url();?>assets/plugins/knob/jquery.knob.js"></script>
     <!-- daterangepicker -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.10.2/moment.min.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/daterangepicker/daterangepicker.js"></script>
     <!-- datepicker -->
-
     <script type="text/javascript" src="<?php echo base_url();?>assets/plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-
-<script src="<?php echo base_url();?>assets/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
-<script src="<?php echo base_url();?>assets/plugins/ckfinder/ckfinder.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>assets/plugins/ckeditor/ckeditor.js" type="text/javascript"></script>
+    <script src="<?php echo base_url();?>assets/plugins/ckfinder/ckfinder.js" type="text/javascript"></script>
 
     <!-- Bootstrap WYSIHTML5 -->
     <script src="<?php echo base_url();?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
@@ -56,6 +47,8 @@
     <script src="<?php echo base_url();?>assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/datepicker/bootstrap-datepicker.js"></script>
+    <script src="<?php echo base_url();?>assets/js/datepicker/bootstrap-datetimepicker.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>

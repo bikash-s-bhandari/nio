@@ -51,6 +51,13 @@
               </a>
             </li>
 
+            <li class="<?php if($nav=='msg'){echo "active";}?> treeview">
+              <a href="<?php echo base_url('admin');?>/ambassador">
+                <i class="fa fa-envelope"></i>
+                <span>Ambassador Message</span>
+              </a>
+            </li>
+
             <li class="<?php if($nav=='currency') echo 'active';?> treeview">
               <a href="<?php echo base_url('admin')?>/currency">
                 <i class="fa fa-money" aria-hidden="true"></i>
@@ -71,9 +78,21 @@
             <li><a href="<?php echo base_url('admin/user');?>"><i class="fa fa-file"></i>Registered Users</a></li>
                </ul>
             </li>
-          
+            <li class="<?php if($nav=='con_affair') echo 'active';?> treeview">
+              <a href="#">
+                <i class="fa fa-book"></i>
+                <span>Counselor Affair</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url('admin/counselor/category');?>"><i class="fa fa-file"></i>Categories</a></li>
+                <li><a href="<?php echo base_url('admin/counselor');?>"><i class="fa fa-file"></i>Counselor</a></li>
 
-          <li class="<?php if($nav=='landmark') echo 'active';?> treeview">
+               
+              </ul>
+             </li>
+          
+             <li class="<?php if($nav=='landmark') echo 'active';?> treeview">
               <a href="#">
                 <i class="fa fa-map-marker"></i>
                 <span>Landmarks</span>
@@ -84,22 +103,21 @@
                 <li><a href="<?php echo base_url('admin/landmark');?>"><i class="fa fa-file"></i>Landmarks</a></li>
 
                 <li><a href="<?php echo base_url('admin/landmark/create');?>"><i class="fa fa-plus-circle"></i>Add New Landmark</a></li>
-                
-                
-                
               </ul>
-           </li>
+             </li>
 
            <li class="<?php if($nav=='news') echo 'active';?> treeview">
               <a href="#">
                 <i class="fa fa-newspaper-o"></i>
-                <span>News Management</span>
+                <span>News & Events Manage</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
                 <li><a href="<?php echo base_url('admin/news/category');?>"><i class="fa fa-file"></i>Categories</a></li>
                 <li><a href="<?php echo base_url('admin/news');?>"><i class="fa fa-file"></i>News</a></li>
                 <li><a href="<?php echo base_url('admin/news/create');?>"><i class="fa fa-plus-circle"></i>Add New News</a></li>
+                <li><a href="<?php echo base_url('admin/event');?>"><i class="fa fa-file"></i>Events</a></li>
+                <li><a href="<?php echo base_url('admin/event/create');?>"><i class="fa fa-plus-circle"></i>Add New Events</a></li>
                 
                 
                 
@@ -113,6 +131,8 @@
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
+                <li><a  href="<?php echo base_url('admin/slider');?>"><i class="fa fa-file"></i>Sliders</a></li>
+                <li><a  href="<?php echo base_url('admin/slider/create');?>"><i class="fa fa-plus-circle"></i>Add Slider</a></li>
                 <li><a  href="<?php echo base_url('admin/page');?>"><i class="fa fa-file"></i>Pages</a></li>
                 <li><a href="<?php echo base_url('admin/page/create');?>"><i class="fa fa-plus-circle"></i>Add New Pages</a></li>
                 <li><a href="<?php echo base_url('admin/page/category');?>"><i class="fa fa-file"></i>Navigations</a></li>

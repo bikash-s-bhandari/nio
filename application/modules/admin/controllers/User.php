@@ -29,7 +29,7 @@ class User extends CI_Controller
         $data['breadcrumb']=array('Dashboard'=>'Dashboard',$this->module=>'User',' User List'=>'');
         $data['view']=base_url().'admin/user/view/';
         $data['delete']=base_url().'admin/user/delete/';
-        $data['fields']=array('SN','First Name','Last Name','Email','Status','View');
+        $data['fields']=array('SN','Full Name','Email','Address','Status','View');
         $records=$this->user_model->getAllUsers();
         if(FALSE!=$records):
             $records=check_status($records);

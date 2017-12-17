@@ -28,7 +28,7 @@ class User_model extends CI_Model
 
 	public function getAllUsers()
 	{
-		$query=$this->db->select('id,first_name,last_name,email,status')
+		$query=$this->db->select('id,full_name,email,address,status')
 		->from('users')
 		->order_by('created_at','DESC')
 		->get();

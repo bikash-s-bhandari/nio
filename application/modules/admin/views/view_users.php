@@ -60,9 +60,10 @@
                         <?php $i=1; foreach($datas as $data):  ?>
                          <tr role="row" class="odd">
                          <td class="sorting_1"><?= $i++; ?></td>
-                         <td><?= $data->first_name; ?></td>
-                          <td><?=  $data->last_name;?></td>
+                         <td><?= $data->full_name; ?></td>
+                        
                           <td><?=  $data->email;?></td>
+                          <td><?= $data->address; ?></td>
                           <?php if($data->status=='In Active'){?>
                           <td><span class="bg-red" style="text-align:center;width:100px; display:inline-block;border-radius: 3px"><?= $data->status;?></span> &nbsp;<a onclick="return confirm('Do you want to activate this account?')" href="<?php echo base_url();?>admin/user/activate/<?= $data->id; ?>" class="btn btn-default btn-xs"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a></td>
                            <?php } else if($data->status=='Active') { ?>
@@ -112,32 +113,32 @@
 
 <div class="row">
 <div class="form-group">
-    <label class="col-sm-3" for="firstname">First Name</label>
+    <label class="col-sm-3" for="firstname">Full Name</label>
     <div class="col-sm-9">
-      <input type="text" placeholder="" id="firstname" class="form-control" readonly="readonly">
+      <input type="text" placeholder="" id="fullname" class="form-control" readonly="readonly">
     </div>
   </div>
 </div>
 <br/>
-<div class="row">
+<!-- <div class="row">
 <div class="form-group">
     <label class="col-sm-3" for="middlename">Middle Name</label>
     <div class="col-sm-9">
         <input type="text" placeholder="" id="middlename" class="form-control" readonly="readonly">
       </div>
     </div>
-</div>
-<br/>
-<div class="row">
+</div> -->
+<!-- <br/> -->
+<!-- <div class="row">
 <div class="form-group">
     <label class="col-sm-3" for="lastname">Last Name</label>
     <div class="col-sm-9">
         <input type="text" placeholder="" id="lastname" class="form-control" readonly="readonly">
       </div>
     </div>
-</div>
-<br/>
-<div class="row">
+</div> -->
+
+<!-- <div class="row">
 <div class="form-group">
     <label class="col-sm-3" for="username">Username</label>
     <div class="col-sm-9">
@@ -145,8 +146,8 @@
       </div>
        
    </div>
-</div>
-<br/>
+</div> -->
+<!-- <br/> -->
 <div class="row">
 <div class="form-group">
     <label class="col-sm-3" for="email">Email Address</label>
@@ -156,12 +157,12 @@
        
    </div>
 </div>
-<br/>
+<br/> 
 <div class="row">
 <div class="form-group">
-    <label class="col-sm-3" for="ipaddress">IP Address</label>
+    <label class="col-sm-3" for="ipaddress">Address</label>
     <div class="col-sm-9">
-        <input type="text" placeholder="" id="ipaddress" class="form-control" readonly="readonly">
+        <input type="text" placeholder="" id="address" class="form-control" readonly="readonly">
       </div>
     </div>
 </div>
@@ -174,6 +175,7 @@
       </div>
     </div>
 </div>
+
 <br/>
 <div class="row">
 <div class="form-group">

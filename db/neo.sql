@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 04, 2017 at 07:36 AM
+-- Generation Time: Dec 17, 2017 at 02:13 PM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -54,6 +54,27 @@ INSERT INTO `default_admin` (`id`, `role_id`, `username`, `email`, `password`, `
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `default_ambassador_message`
+--
+
+CREATE TABLE `default_ambassador_message` (
+  `id` int(11) NOT NULL,
+  `name` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `message` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_ambassador_message`
+--
+
+INSERT INTO `default_ambassador_message` (`id`, `name`, `image`, `message`, `created_at`) VALUES
+(1, 'test message', 'tri-banner-background--the-resiliency-institute-2.jpeg', '<p>this is message</p>\r\n', '2017-12-17 06:11:30');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `default_ci_sessions`
 --
 
@@ -80,6 +101,83 @@ INSERT INTO `default_ci_sessions` (`id`, `ip_address`, `timestamp`, `data`) VALU
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `default_counselor`
+--
+
+CREATE TABLE `default_counselor` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cat_id` int(11) NOT NULL,
+  `title` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `status` enum('0','1') NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_counselor`
+--
+
+INSERT INTO `default_counselor` (`id`, `cat_id`, `title`, `description`, `status`, `image`, `created_at`) VALUES
+(3, 5, 'राहदानी (MRP)', '<p><span> <span>नेपालको राहदानी विभागमा पठाईने छ । नेपालबाट राहदानी तयार हुन झण्डै ६ देखि ८ हप्ता लाग्ने र तयार भई दूतावासमा आइसकेपछि वितरण गरिने छ ।</span></span></p>\r\n', '1', 'tri-banner-background--the-resiliency-institute-2.jpeg', '2017-12-15 10:48:26'),
+(4, 5, 'पेश गर्नु पर्ने आवश्यक कागजातहरु', '<p [removed]=\"box-sizing: border-box; border: 0px; font-family: inherit; font-style: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; color: rgb(64, 64, 64); text-decoration-line: none;\" target=\"_blank\"> http://nepalpassport.gov.np/ </a>गई त्यहां उल्लेख गरिए अनुसारको फाराम  भरी रितपूर्वकको फोटो टांस गरी तीन प्रति भरिएको फाराम दूतावासमा बुझाउने ।</p>\r\n\r\n<ul [removed]: none; color: rgb(64, 64, 64);\">\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">फाराममा हस्ताक्षर गर्ने खण्डमा कालो मसीले आफ्नो हस्ताक्षर गरी निर्दिष्ट स्थानमा ल्याप्चे लगाएको हुनुपर्ने ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">पुरानो राहदानीको सक्कल तथा प्रतिलिपि ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">नेपाली नागरिकताको प्रमाणपत्रको सक्कल र प्रतिलिपि ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">हालै खिचिएको पासपोर्ट साइजका ५ प्रति रंगिन फोटाहरु / फोटाहरु किनारा नभएको-अनुहारको भागले सम्पूर्ण फोटोको ७० देखि ८० प्रतिशत भाग कभर गरेको र दुवै कान स्पष्ट देखिने हुनुपर्दछ ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">शुल्क: ओमानी रियल  २०.००</li>\r\n</ul>\r\n', '1', '', '2017-12-15 10:49:22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_counselor_category`
+--
+
+CREATE TABLE `default_counselor_category` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `cat_title` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `slug` varchar(200) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(200) NOT NULL,
+  `status` enum('0','1') NOT NULL,
+  `priority` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_counselor_category`
+--
+
+INSERT INTO `default_counselor_category` (`id`, `cat_title`, `slug`, `image`, `status`, `priority`) VALUES
+(5, 'PASSPORT', 'passport', 'profile_test_icon__74443.jpg', '1', 10),
+(6, 'TRAVEL DOCUMENT', 'travel-document', '', '1', 0),
+(7, 'Power of Attorney', 'power-of-attorney', '', '1', 0);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_events`
+--
+
+CREATE TABLE `default_events` (
+  `id` int(11) NOT NULL,
+  `name` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `address` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `email` varchar(50) DEFAULT NULL,
+  `phone` varchar(15) NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci,
+  `image` varchar(100) DEFAULT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `start_time` varchar(50) DEFAULT NULL,
+  `end_time` varchar(50) DEFAULT NULL,
+  `status` enum('0','1') NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_events`
+--
+
+INSERT INTO `default_events` (`id`, `name`, `address`, `email`, `phone`, `description`, `image`, `start_date`, `end_date`, `start_time`, `end_time`, `status`, `create_at`) VALUES
+(4, 'Event Name here', 'kathamandu', 'event@gmail.com', '12345612212', '<p>helo worlld here</p>\r\n', 'tri-banner-background--the-resiliency-institute-2.jpeg', '2017-12-26', '2018-01-24', '04:30 PM', '06:15 PM', '1', '2017-12-17 09:51:48');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `default_landmarks`
 --
 
@@ -102,7 +200,9 @@ CREATE TABLE `default_landmarks` (
 --
 
 INSERT INTO `default_landmarks` (`id`, `cat_id`, `title`, `email`, `address`, `longitude`, `latitude`, `website`, `image`, `status`, `created_at`) VALUES
-(1, 2, 'kathamdnu hospital', 'bikash.bhandari05@gmail.com', 'Nepal', '84.124', '28.395', '', '', '1', '2017-12-03 15:13:48');
+(1, 2, 'kathamdnu hospital', 'bikash.bhandari05@gmail.com', 'Nepal', '84.124', '28.395', '', '', '1', '2017-12-03 15:13:48'),
+(2, 4, 'Prasadi', 'prasadi@gmail.com', 'Prasadi Academy, Jawalakhel, Central Development Region, Nepal', '85.317', '27.671', '', '', '1', '2017-12-04 09:36:45'),
+(3, 2, 'Bir Hospital', 'bir@gmail.com', 'Bir Hospital, Kathmandu, Central Development Region, Nepal', '85.314', '27.705', '', '1512380878.jpeg', '1', '2017-12-04 09:47:58');
 
 -- --------------------------------------------------------
 
@@ -125,8 +225,7 @@ CREATE TABLE `default_landmark_category` (
 
 INSERT INTO `default_landmark_category` (`id`, `cat_title`, `slug`, `image`, `priority`, `status`) VALUES
 (2, 'Hospitals', 'hospital', '', 10, '1'),
-(4, 'College', 'college', '', 20, '1'),
-(5, 'asxcxc', 'asxcxc', '', 10, '1');
+(4, 'College', 'college', '', 20, '1');
 
 -- --------------------------------------------------------
 
@@ -317,24 +416,73 @@ INSERT INTO `default_settings` (`id`, `app_name`, `sub_name`, `app_slogan`, `log
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `default_sliders`
+--
+
+CREATE TABLE `default_sliders` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `status` enum('0','1') NOT NULL,
+  `created_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_sliders`
+--
+
+INSERT INTO `default_sliders` (`id`, `title`, `image`, `status`, `created_at`) VALUES
+(10, '', '1513510784_du.jpg', '1', '0000-00-00 00:00:00'),
+(11, '', '1513510784_3S.jpg', '1', '0000-00-00 00:00:00'),
+(12, '', '1513511453_yj.jpg', '1', '0000-00-00 00:00:00'),
+(13, '', '1513511454_D3.jpg', '1', '0000-00-00 00:00:00'),
+(14, '', '1513511454_uM.jpg', '1', '0000-00-00 00:00:00'),
+(15, '', '1513511454_E2.jpg', '1', '0000-00-00 00:00:00'),
+(16, '', '1513511454_2A.jpg', '1', '0000-00-00 00:00:00'),
+(17, '', '1513511906_DP.jpg', '1', '0000-00-00 00:00:00'),
+(18, '', '1513511907_Fu.jpg', '1', '0000-00-00 00:00:00'),
+(19, '', '1513511907_gi.jpg', '1', '0000-00-00 00:00:00'),
+(20, '', '1513512203_bT.jpg', '1', '0000-00-00 00:00:00'),
+(21, '', '1513512204_Tv.jpg', '1', '0000-00-00 00:00:00'),
+(22, '', '1513512204_pI.jpg', '1', '0000-00-00 00:00:00'),
+(23, '', '1513512252_sI.jpg', '1', '0000-00-00 00:00:00'),
+(24, '', '1513512253_U9.jpg', '1', '0000-00-00 00:00:00'),
+(25, '', '1513512253_US.jpg', '1', '0000-00-00 00:00:00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_sos`
+--
+
+CREATE TABLE `default_sos` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `name` varchar(100) NOT NULL,
+  `email` varchar(100) NOT NULL,
+  `phone` varchar(13) NOT NULL,
+  `create_at` datetime NOT NULL,
+  `update_at` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00' ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `default_users`
 --
 
 CREATE TABLE `default_users` (
   `id` int(11) NOT NULL,
-  `first_name` varchar(50) NOT NULL,
-  `middle_name` varchar(50) NOT NULL,
-  `last_name` varchar(50) NOT NULL,
-  `username` varchar(255) NOT NULL,
+  `full_name` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `ip_address` varchar(50) NOT NULL,
-  `password_reset_code` varchar(200) NOT NULL,
+  `address` text NOT NULL,
+  `password_reset_code` varchar(200) DEFAULT NULL,
   `status` enum('0','1') NOT NULL,
   `last_login` datetime NOT NULL,
   `email_varified_link` varchar(255) NOT NULL,
   `is_varified` enum('0','1') NOT NULL,
-  `photo` blob NOT NULL,
+  `photo` varchar(100) NOT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -343,8 +491,10 @@ CREATE TABLE `default_users` (
 -- Dumping data for table `default_users`
 --
 
-INSERT INTO `default_users` (`id`, `first_name`, `middle_name`, `last_name`, `username`, `email`, `password`, `ip_address`, `password_reset_code`, `status`, `last_login`, `email_varified_link`, `is_varified`, `photo`, `created_at`, `updated_at`) VALUES
-(3, 'bikash', 'singh', 'bhandari', 'bikash.s.bhandari', 'bikash.bhandari05@gmail.com', '$2y$11$SU/sf0KAKgjI6MjW6cZtOOFavIFgLi/uVY.BdR/YhVUJifkDGkV46', '', '1usTWPAY83jpZf7doKECgiMNSQcLtn6yhxkFO9zwmbRqa54BJUXI2DGVHevl', '1', '2017-12-03 10:30:23', '', '', '', '2017-12-20 00:00:00', '0000-00-00 00:00:00');
+INSERT INTO `default_users` (`id`, `full_name`, `email`, `password`, `address`, `password_reset_code`, `status`, `last_login`, `email_varified_link`, `is_varified`, `photo`, `created_at`, `updated_at`) VALUES
+(3, 'bikash', 'bikash.bhandari05@gmail.com', '$2y$11$./dlbdc59lfRNcwqg43Yv.7BnxSjhWUcQ.kAKnkj4f6EifjQlGz5O', '', NULL, '1', '2017-12-06 07:38:15', '', '', '', '2017-12-20 00:00:00', '0000-00-00 00:00:00'),
+(11, 'surya', 'surya@gmail.coc', '$2y$11$9lzR2YODkAsUlWdho63c7OFzcwOwsJdUA6JcERb8mlArmFN/OaToS', 'kathmandu', NULL, '0', '0000-00-00 00:00:00', '', '0', 'http://localhost/nio/uploads/photo1512542173', '2017-12-06 07:36:13', '0000-00-00 00:00:00'),
+(12, 'surya', 'surya@gmail.com', '$2y$11$UAiEDNudJWlkoXQwvUEQ6OpcMnJyOsk57qVOGpVhI2kHPvs5zsxh6', 'kathmandu', NULL, '0', '0000-00-00 00:00:00', '', '0', 'uploads/photo1512542214', '2017-12-06 07:36:54', '0000-00-00 00:00:00');
 
 -- --------------------------------------------------------
 
@@ -366,11 +516,8 @@ CREATE TABLE `default_user_auth` (
 --
 
 INSERT INTO `default_user_auth` (`id`, `user_id`, `token`, `expire_at`, `created_at`, `updated_at`) VALUES
-(1, 3, 'GbQXo9WFmTj$zo3!qiIL5ZQGQSzqpKMPbLMDQ9XxDaFejU!gYZumFzJ8zxQV', '2017-12-03 20:02:43', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(2, 3, 'o6pznPeQbn7rza!sjbVwZe36VIPhAb97dIYZtvlUfGyBkQr2jjJO2Hejqq$q', '2017-12-03 20:02:56', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(3, 3, '6fMQIgDjj3X3prgQNawSW8veFBPEpNEqiScRop2f8#HH#J4@eXMqgV4GWvVn', '2017-12-03 20:03:21', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
-(4, 3, 'JA@CodG4n2CTcvc7Ee#5SsSvVaWbAzl9gsfDIsRNNWxD3qHWkRTxwWL4@DxI', '2017-12-03 21:56:04', '0000-00-00 00:00:00', '2017-12-03 09:56:04'),
-(5, 3, 'ccwHOG8bhkDiMSJCyDH#ia74xlVlPc9nbBR3Sr#CBDR4qChlRlmh5At2Bqw2', '2017-12-03 22:30:23', '0000-00-00 00:00:00', '0000-00-00 00:00:00');
+(8, 3, 'pwxkr#s7M3gsCQffh9icRN39tGuN2yURuuT4VluGV@uOWhtVSr3DotHjpf62', '2017-12-05 00:29:06', '0000-00-00 00:00:00', '2017-12-04 12:29:06'),
+(9, 3, 'ziBxd!Qn8opLWi!JL2D#i@hs@JUVV4ehynn8S2RrtQgdCPNOobMcanDKa8yU', '2017-12-06 20:02:01', '0000-00-00 00:00:00', '2017-12-06 08:02:01');
 
 --
 -- Indexes for dumped tables
@@ -387,6 +534,24 @@ ALTER TABLE `default_admin`
 --
 ALTER TABLE `default_ci_sessions`
   ADD KEY `ci_sessions_timestamp` (`timestamp`);
+
+--
+-- Indexes for table `default_counselor`
+--
+ALTER TABLE `default_counselor`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `default_counselor_category`
+--
+ALTER TABLE `default_counselor_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `default_events`
+--
+ALTER TABLE `default_events`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `default_landmarks`
@@ -446,6 +611,18 @@ ALTER TABLE `default_settings`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `default_sliders`
+--
+ALTER TABLE `default_sliders`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `default_sos`
+--
+ALTER TABLE `default_sos`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `default_users`
 --
 ALTER TABLE `default_users`
@@ -467,15 +644,30 @@ ALTER TABLE `default_user_auth`
 ALTER TABLE `default_admin`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 --
+-- AUTO_INCREMENT for table `default_counselor`
+--
+ALTER TABLE `default_counselor`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `default_counselor_category`
+--
+ALTER TABLE `default_counselor_category`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+--
+-- AUTO_INCREMENT for table `default_events`
+--
+ALTER TABLE `default_events`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
 -- AUTO_INCREMENT for table `default_landmarks`
 --
 ALTER TABLE `default_landmarks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `default_landmark_category`
 --
 ALTER TABLE `default_landmark_category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT for table `default_navigation_groups`
 --
@@ -512,15 +704,25 @@ ALTER TABLE `default_roles`
 ALTER TABLE `default_settings`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
+-- AUTO_INCREMENT for table `default_sliders`
+--
+ALTER TABLE `default_sliders`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+--
+-- AUTO_INCREMENT for table `default_sos`
+--
+ALTER TABLE `default_sos`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+--
 -- AUTO_INCREMENT for table `default_users`
 --
 ALTER TABLE `default_users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 --
 -- AUTO_INCREMENT for table `default_user_auth`
 --
 ALTER TABLE `default_user_auth`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- Constraints for dumped tables
 --

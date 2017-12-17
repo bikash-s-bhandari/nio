@@ -34,6 +34,15 @@ $('#newsDate').datepicker({
 
 });
 
+/*time picker*/
+$(".start_time").timepicker({
+    showInputs: false
+});
+
+$(".end_time").timepicker({
+    showInputs: false
+});
+
 function getSubCat(id) {
     var url = base_url + 'admin/news/get_sub_cat_title';
     $.post(url, { data: id, sub_cat: "" }, function(response) {
@@ -71,12 +80,15 @@ if (id) {
 /*form validations*/
 $('#create_news').validate();
 $('#create_landmark').validate();
+$('#create_counselor').validate();
 $('#page_category').validate();
 $('#news_category').validate();
 $('#create_user').validate();
 $('#page_group').validate();
 $('#page_create').validate();
 $('#landmark_category').validate();
+$('#counselor_category').validate();
+$('#create_event').validate();
 
 /*for model popup*/
 $('.user_detail').on('click', function() {
@@ -89,15 +101,16 @@ $('.user_detail').on('click', function() {
         dataType: 'json',
         data: { id: user_id },
         success: function(response) {
-            $('#firstname').val(response.first_name);
-            $('#middlename').val(response.middle_name);
-            $('#lastname').val(response.last_name);
-            $('#username').val(response.username);
+            // $('#firstname').val(response.first_name);
+            // $('#middlename').val(response.middle_name);
+            $('#fullname').val(response.full_name);
+            $('#address').val(response.address);
+            // $('#username').val(response.username);
             $('#email').val(response.email);
-            $('#ipaddress').val(response.ip_address);
+            // $('#ipaddress').val(response.ip_address);
             $('#status').val(response.status);
             $('#created_at').val(response.created_at);
-            console.log(response.first_name);
+
         }
 
     });
@@ -165,6 +178,25 @@ $('#convert').on('click', function(e) {
 
 });
 
+$('#start_date').datetimepicker({
+    format: 'YYYY-MM-DD',
+    minDate: 'now',
+    ignoreReadonly: true
+
+});
+$('#end_date').datetimepicker({
+    useCurrent: false, //Important! See issue #1025
+    format: 'YYYY-MM-DD',
+    minDate: 'now',
+    ignoreReadonly: true
+});
+$("#start_date").on("dp.change", function(e) {
+    $('#end_date').data("DateTimePicker").minDate(e.date);
+});
+$("#end_date").on("dp.change", function(e) {
+    $('#start_date').data("DateTimePicker").maxDate(e.date);
+});
+
 
 
 //geocode
@@ -189,20 +221,20 @@ function geocode() {
                 // Geometry
                 var lat = response.data.results[0].geometry.location.lat;
                 var lng = response.data.results[0].geometry.location.lng;
-                lat=lat.toFixed(3);
-                lng=lng.toFixed(3);
-                
+                lat = lat.toFixed(3);
+                lng = lng.toFixed(3);
 
-                var longitude="<label for='longitude'>Longitude</label>";
-                longitude+="<input type='text' name='longitude' value='"+lng+"' class='form-control'>";
-                
-                var latitude="<label for='latitude'>Latitude</label>";
-                latitude+="<input type='text' name='latitude' value='"+lat+"' class='form-control'>";
+
+                var longitude = "<label for='longitude'>Longitude</label>";
+                longitude += "<input type='text' name='longitude' value='" + lng + "' class='form-control'>";
+
+                var latitude = "<label for='latitude'>Latitude</label>";
+                latitude += "<input type='text' name='latitude' value='" + lat + "' class='form-control'>";
                 $('#longitude').html(longitude);
                 $('#latitude').html(latitude);
 
 
-                
+
             })
             .catch(function(error) {
                 console.log(error);

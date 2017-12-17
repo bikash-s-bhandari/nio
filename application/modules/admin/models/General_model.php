@@ -76,6 +76,53 @@ class General_model extends CI_Model {
     }
 
 
+    
+
+
+     public function do_upload($folder, $fileName = 'userfile')
+       {
+
+        $config['upload_path'] = config_item('upload_path') . $folder;
+        $config['allowed_types'] = "gif|jpg|jpeg|png";
+        $this->load->library('upload', $config);
+        if (!$this->upload->do_upload()){
+        $data['error'] = array('error' => $this->upload->display_errors("<p style='color:red'>","</p>"));
+       
+        $data['flash']=$this->session->set_flashdata('error',$data['error']);
+        dumparray($data['error']);
+        
+
+        }
+        else{
+
+            $data = array('upload_data' => $this->upload->data());
+            $upload_data=$data['upload_data'];
+            
+            $file_name=$upload_data['file_name'];
+            $this->generate_thumbnail($file_name,$folder);
+            return $file_name;
+           }
+
+    }
+
+    public function generate_thumbnail($file_name,$folder)
+    {
+        // echo "test";
+        $config['image_library']='gd2';
+        $config['source_image']=config_item('upload_path') . $folder.'/'.$file_name;
+        $config['new_image']=config_item('upload_path') . $folder.'/thumbs/'.$file_name;
+       // dumparray($config['source_image']);
+        $config['maintain_ratio']=TRUE;
+        $config['width']=200;
+        $config['height']=200;
+        $this->load->library('image_lib',$config);
+        $this->image_lib->initialize($config);
+        $this->image_lib->resize();
+
+
+    }
+
+
 
 
 
@@ -99,7 +146,10 @@ class General_model extends CI_Model {
                print_r($error);exit;
                 }
                 $imginfo = $this->upload->data();
-                $imgname = $imginfo['raw_name'] . $imginfo['file_ext'];
+                // echo "<pre>";
+                // print_r($imginfo)
+;                $imgname = $imginfo['raw_name'] . $imginfo['file_ext'];
+                $this->generate_thumbnail($imgname,$folder);
                 $image_name[] = ($imgname);
 
           

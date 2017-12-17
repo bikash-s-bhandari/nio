@@ -56,6 +56,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $default_controller = "admin";
 $route['default_controller']=$default_controller;
 
+$route['admin/ambassador']="admin/ambassador_message";
+
 
 
 
