@@ -76,7 +76,7 @@
                        
               </div>
           <div class="form-group">
-            <label for="exampleInputEmail1">Logo</label>
+            <label for="exampleInputEmail1" style="display: block;">Logo</label>
             <?php if ($isEdit) { ?>
                                 <input type="hidden" value="<?php echo $datas->image; ?>" name="prev_image"/>
                             <?php } ?>
@@ -84,8 +84,10 @@
             <div class="fileinput fileinput-new" data-provides="fileinput">
             <div class="fileinput-preview thumbnail" data-trigger="fileinput" style="width: 200px; height: 150px; line-height: 150px;">
              
-            <?php if($isEdit):   ?>
-              <img src="<?php echo base_url().'uploads/'.'landmark/'.$datas->image; ?>">
+            <?php if($isEdit):
+            $url=base_url().'uploads/';
+            ?>
+              <img src="<?php if($datas->image==''){echo $url.'no-image.jpeg';}else { echo $url.'landmark/'.$datas->image;} ?>">
             <?php endif; ?>   
                           
             </div>

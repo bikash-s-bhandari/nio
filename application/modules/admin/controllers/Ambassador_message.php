@@ -25,7 +25,10 @@ class Ambassador_message extends MX_Controller
         $data['breadcrumb']=array('Dashboard'=>'dashboard',$data['module']=>'');
         $data['message'] = getWhere('ambassador_message', array('id' => 1));
 
+
+
         if($this->input->post()):
+            
             if(!empty($_FILES['userfile']['name'])):
             $image_name=$this->general->do_upload('ambassador_image');
             $this->general->del_image('ambassador_message',array('id'=>1),'ambassador_image','image');

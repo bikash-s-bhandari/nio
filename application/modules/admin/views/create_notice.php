@@ -5,7 +5,7 @@
         <!-- Content Header (Page header) -->
         <section class="content-header">
           <h1>
-            News Management
+            Notice Management
             
           </h1>
           <ol class="breadcrumb">
@@ -28,9 +28,6 @@
              <div id="success" class="alert alert-success"><?= $this->session->flashdata('success'); ?></div>
              </center>
            </div> 
-              
-           
-            
           <?php endif; ?>
             <!-- left column -->
             <div class="col-md-12">
@@ -42,7 +39,7 @@
                 <!-- form start -->
 
                 <div class="box-body">
-                <form id="create_news" action="<?php echo base_url().$action; ?>" method="post" enctype="multipart/form-data">
+                <form id="create_notice" action="<?php echo base_url().$action; ?>" method="post" enctype="multipart/form-data">
                     
                   
                     <div class="form-group">
@@ -51,51 +48,11 @@
                       <span style="color:red"><?php echo form_error('title'); ?></span>
                     </div>
                     <div class="form-group">
-                      <label for="Title">Slug</label>
-                      <input type="text" class="form-control" name="slug" value="<?php if($isEdit) echo $datas->slug; ?>"  placeholder="Slug">
-                      <p class="help-block">Leave blank to auto create slug. </p>
-                      
-                    </div>
-                    <div class="form-group">
-                      <label for="Title">Sub Title</label>
-                      <input type="text" class="form-control" name="sub_title" value="<?php if($isEdit) echo $datas->sub_title; ?>"  placeholder="Sub Title">
-                      
-                    </div>
-                    <div class="form-group">
-                      <label for="Title">Category</label>
-                      <div class="row">
-                        <div class="col-md-4">
-                      <?php 
-                       $js ='id="parent_cat" onChange="getSubCat(this.value);" class="form-control" required';
-                         
-                         echo form_dropdown('cat_id',$options,$cat_id,$js);
-                       ?>
-
-                     </div>
-                     </div>
-                     <span style="color:red"><?php echo form_error('cat_id'); ?></span>
-                    </div>
-
-                     <div class="form-group" id="subcat">
-                      <?php if($isEdit) {?>
-                      <input type="hidden" name="sub_cat_id" value="<?= $datas->sub_cat_id; ?>" id="sub_cat">
-
-                      <?php } ?>
-                     
-                    </div>
-
-
-                    <div class="form-group">
-                      <label for="Title">Author</label>
-                      <input type="text" class="form-control" name="author" value="<?php if($isEdit) echo $datas->author; ?>"  placeholder="Author Name" required>
-                      <span style="color:red"><?php echo form_error('author'); ?></span>
-                    </div>
-                    <div class="form-group">
                       <label for="Description">Contents</label>
-                      <textarea class="form-control" id="content" rows="3" name="content"  placeholder="Description" required><?php if($isEdit) echo $datas->content; ?></textarea>
+                      <textarea class="form-control" id="notice" rows="3" name="content"  placeholder="Notice here." required><?php if($isEdit) echo $datas->content; ?></textarea>
                       <span style="color:red"><?php echo form_error('content'); ?></span>
                     </div>
-                    <div class="form-group">
+                      <div class="form-group">
                       <label for="exampleInputEmail1" style="display: block;">Image</label>
                       <?php if ($isEdit) { ?>
                                           <input type="hidden" value="<?php echo $datas->image; ?>" name="prev_image"/>
@@ -107,7 +64,7 @@
                      <?php if($isEdit):
                     $url=base_url().'uploads/';
                     ?>
-                      <img src="<?php if($datas->image==''){echo $url.'no-image.jpeg';}else { echo $url.'news_events/thumbs/'.$datas->image;} ?>">
+                      <img src="<?php if($datas->image==''){echo $url.'no-image.jpeg';}else { echo $url.'notice/thumbs/'.$datas->image;} ?>">
                     <?php endif; ?>   
                                             
                       </div>
@@ -124,43 +81,57 @@
                       </div>
                     </div>
                   </div>
+                        <div class="form-group">
+                      <label>Status</label>
+                     <div class="form-group">
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="status" id="optionsRadios1" value="1"
+                          <?php
+                              if($isEdit) {if($datas->status==1)
+                                    {
+                                    echo 'checked'; 
 
-                    <div class="form-group">
-                      <label for="Description">Publish Date</label>
-                      <input type="text" class="form-control" name="publish_date" value="<?php if($isEdit) echo $datas->publish_date; ?>"  placeholder="YYYY-MM-DD" id="newsDate" required>
-                      <span style="color:red"><?php echo form_error('publish_date'); ?></span>
-                     
-                    </div>
+                                    }
 
-                    <div class="form-group">
-                      <label>Publish</label>
-                      <div class="switch has-switch ios checked">
-                                        <div class="switch-on switch-animate">
-                                        <input type="checkbox" name="status" value="publish" 
-                                        <?php
-                                         if($isEdit) 
-                                        {
-                                          if($datas->status=='publish')
+                                    }
+                                    else
+                                    {
+                                    echo 'checked';
+                                    }
+                                    ?>
+                                    >
+                          Active
+                        </label>
+                      </div>
+                      <div class="radio">
+                        <label>
+                          <input type="radio" name="status" id="optionsRadios2" value="0"
+                          <?php
+                              if($isEdit) 
+                                       {
+                                          if($datas->status==0)
                                           {
                                             echo 'checked'; 
 
                                           }
                                         
-                                          
+                                        }
+                                        
+                                        ?>
 
-                                        }
-                                        else
-                                        {
-                                          echo 'checked';
-                                        }
-                                        ?> >
-                                        <span class="switch-left"></span>
-                                        <label class="normal">&nbsp;</label><span class="switch-right"></span>
-                                        </div>
-                                    </div>
+
+                          >
+                          In Active
+                        </label>
+                      </div>
+                      
                     </div>
+                    </div>
+                    
+                   
 
-
+                    
                    
                     
                     
@@ -189,7 +160,7 @@
  <script>
  window.onload = function () {
 
-       load_ckeditor('content');
+       load_ckeditor('notice',true);
       
 
     };

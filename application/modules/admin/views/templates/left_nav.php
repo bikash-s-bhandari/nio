@@ -3,11 +3,7 @@
   {
     $nav="";
   }
- 
- 
-
-
-  ?>
+?>
       <!-- contains the logo and  left sidebar -->
       <aside class="main-sidebar">
         <!-- sidebar: style can be found in sidebar.less -->
@@ -57,13 +53,34 @@
                 <span>Ambassador Message</span>
               </a>
             </li>
-
-            <li class="<?php if($nav=='currency') echo 'active';?> treeview">
+             <li class="<?php if($nav=='currency') echo 'active';?> treeview">
               <a href="<?php echo base_url('admin')?>/currency">
                 <i class="fa fa-money" aria-hidden="true"></i>
                 <span>Curreny Converter</span>
               </a>
             </li>
+            <li class="<?php if($nav=='notice') echo 'active';?> treeview">
+              <a href="#">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <span>Notice</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url('admin/notice');?>"><i class="fa fa-file"></i>Notices</a></li>
+                <li><a href="<?php echo base_url('admin/notice/create');?>"><i class="fa fa-plus-circle"></i>Add New</a></li>
+             </ul>
+             </li>
+            <li class="<?php if($nav=='press') echo 'active';?> treeview">
+              <a href="#">
+                <i class="fa fa-list-alt" aria-hidden="true"></i>
+                <span>Press Realese</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url('admin/press_realese');?>"><i class="fa fa-file"></i>Press</a></li>
+                <li><a href="<?php echo base_url('admin/press_realese/create');?>"><i class="fa fa-plus-circle"></i>Add New</a></li>
+             </ul>
+             </li>
 
             <li class="<?php if($nav=='users'){echo "active";}?> treeview">
               <a href="#">
@@ -142,6 +159,7 @@
                 
               </ul>
             </li>
+            <li class="<?php if($nav=='download') echo 'active';   ?>"><a href="<?php echo base_url('admin/download');?>"><i class="fa fa-download" aria-hidden="true"></i>Download</a></li>
           </ul>
         </section>
         <!-- /.left sidebar -->

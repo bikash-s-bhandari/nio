@@ -34,6 +34,14 @@ $('#newsDate').datepicker({
 
 });
 
+$("#press_publish_date").datepicker({
+    startDate: 'today',
+    autoclose: true,
+    format: 'yyyy-mm-dd',
+    todayHighlight: true
+
+});
+
 /*time picker*/
 $(".start_time").timepicker({
     showInputs: false
@@ -89,6 +97,8 @@ $('#page_create').validate();
 $('#landmark_category').validate();
 $('#counselor_category').validate();
 $('#create_event').validate();
+$('#create_press_realese').validate();
+$('#create_notice').validate();
 
 /*for model popup*/
 $('.user_detail').on('click', function() {

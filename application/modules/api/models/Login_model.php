@@ -25,6 +25,7 @@ class Login_model extends CI_Model {
 
 	public function check_user($username,$password)
 	{
+		
 		$query=$this->db->select('*')
 		       ->from('users')
 		       
@@ -48,6 +49,10 @@ class Login_model extends CI_Model {
 
 				if($user->status==1)
 				{
+				    if($user->is_varified==1)
+				    {
+				        
+				   
 
                     $last_login=date('Y-m-d H:i:s');
 					// $token = crypt(substr( md5(rand()), 0, 7));
@@ -73,11 +78,19 @@ class Login_model extends CI_Model {
 	                  return array('status' => true,'message' => 'Successfully login.','user_profile'=>array('user_id' => $user_id, 'token' => $token,'full_name'=>$user->full_name,'email'=>$user->email,'address'=>$user->address,'photo'=>$user->photo));
 
 					}
+					
+				    }else
+				    {
+				        	return array('status' => false,'message' => 'Your account is not varified, Please varified your email first!');
+				        
+				    }
+					
+					
 
 				}
 				else
 				{
-					return array('status' => false,'message' => 'Your account is not activated, Please activate your account via email verification.');
+					return array('status' => false,'message' => 'Your account is not activated, Your account is deactivated by administrator!');
 					
 
 				}
@@ -157,7 +170,7 @@ class Login_model extends CI_Model {
     {
         $data['password']=$this->hash_string($data['password']);
     	$this->db->insert('users',$data);
-        return array('status' => true,'message' => 'Your account is successfully created.');
+        return array('status' => true,'message' => 'Your account is successfully created. Please verify your email address for login! ');
     }
 
 
@@ -251,9 +264,39 @@ class Login_model extends CI_Model {
 	public function clear_code($email)
 	{
 	    $data['password_reset_code']=null;
+	   // dumparray("test".$data['password_reset_code']);
+	   
 	    $this->db->where('email',$email);
 	    $query=$this->db->update('users',$data);
+	    return true;
 
+	}
+	
+	
+	
+	public function verify_user_email($email,$code)
+	{
+	     $query=$this->db->get_where('users', array('email'=>$email,'email_varified_link' =>$code));
+	    
+	     if($query->num_rows()==1)
+	     {
+	         return true;
+	     }else
+	     {
+	         return false;
+	     }
+	    
+	   
+	    
+	}
+	
+	public function verify_user_now($email)
+	{
+	    $this->db->where('email',$email);
+	    $this->db->update('users',array('email_varified_link'=>null,'is_varified'=>'1'));
+	    return;
+	    
+	    
 	}
 
 

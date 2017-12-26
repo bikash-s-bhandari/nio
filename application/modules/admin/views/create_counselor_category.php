@@ -53,7 +53,7 @@
                       <span style="color:red"><?php echo form_error('email'); ?></span>
                     </div>
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Logo</label>
+                      <label for="exampleInputEmail1" style="display: block;">Logo</label>
                       <?php if ($isEdit) { ?>
                                 <input type="hidden" value="<?php echo $datas->image; ?>" name="prev_image"/>
                             <?php } ?>

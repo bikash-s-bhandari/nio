@@ -44,7 +44,7 @@ class News extends MX_Controller
 	}
 
 
-//=======================================================================================================
+//========================================================================================================
 
     public function create()
     {
@@ -79,13 +79,15 @@ class News extends MX_Controller
             }else
             {
                 $data=$this->input->post();
+                if(!empty($_FILES['userfile']['name']))
+                {
+                    $file_name=$this->general->do_upload('news_events');
+                    $data['image']=$file_name;
+                }
                 $slug=$data['slug'];
                 $title=$data['title'];
                 $data['slug']=($slug=='')? url_title($title,'-',TRUE):$slug;
                 $data['slug']=$data['slug'].'-'.time();
-                
-
-
                 $this->general->insert($this->table, $data);
                 $task = "<div class='alert alert-success'><strong>Success!</strong> " . $this->module . " added successfully.</div>";
                 $status = 'success';
@@ -132,6 +134,19 @@ class News extends MX_Controller
             }else
             {
                 $data=$this->input->post();
+                 if(isset($_FILES) && $_FILES['userfile']['name']!='')
+                    {
+                        $file_name=$this->general->do_upload('news_events');
+                        $this->general->unlink_img('news_events',$this->input->post('prev_image'));
+                        $this->general->unlink_img('news_events/thumbs',$this->input->post('prev_image'));
+                       
+                    }
+                    else
+                    {
+                        $file_name=$this->input->post('prev_image');
+                    }
+                $data['image']=$file_name;
+                unset($data['prev_image']);
                 $slug=$data['slug'];
                 $title=$data['title'];
                 $data['slug']=($slug=='')? url_title($title,'-',TRUE).time():$slug;
@@ -175,6 +190,16 @@ class News extends MX_Controller
         
 
 
+     }
+
+//=======================================================================================================
+     
+    public function delete($id)
+     {
+        $this->general->del_image('news',array('id' => $id),'news_events');
+         
+        $this->general->delete($this->table,array('id'=>$id));
+        redirect('admin/news');
      }
 
 

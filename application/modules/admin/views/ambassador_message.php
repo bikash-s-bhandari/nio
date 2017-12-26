@@ -44,8 +44,8 @@
                <form action="<?php echo base_url('admin/ambassador_message');?>" method="post" enctype="multipart/form-data">
                   <div class="box-body">
                     <div class="form-group">
-                      <label for="exampleInputEmail1">Name</label>
-                      <input type="text" class="form-control"  name="name" value="<?= $message->name; ?>" id="exampleInputEmail1" placeholder="Enter Name">
+                      <label for="name">Name</label>
+                      <input type="text" class="form-control"  name="name" value="<?= $message->name; ?>" placeholder="Enter Name">
                     </div>
                    
                     

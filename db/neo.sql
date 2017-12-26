@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 17, 2017 at 02:13 PM
+-- Generation Time: Dec 20, 2017 at 08:06 AM
 -- Server version: 10.1.26-MariaDB
 -- PHP Version: 7.1.8
 
@@ -48,7 +48,7 @@ CREATE TABLE `default_admin` (
 --
 
 INSERT INTO `default_admin` (`id`, `role_id`, `username`, `email`, `password`, `salt`, `status`, `token`, `password_reset_code`, `fname`, `lname`, `created_at`) VALUES
-(1, 1, 'admin', 'admin@gmail.com', 'db01cbbdfba7818313a77bbe82f0433d62fb9fda', 'X1g5', '1', '', '', 'bikash', 'bhandary', '2017-11-14 10:27:03'),
+(1, 1, 'admin', 'admin@gmail.com', 'db01cbbdfba7818313a77bbe82f0433d62fb9fda', 'X1g5', '1', '', '', 'bikash', 'bhandari', '2017-11-14 10:27:03'),
 (7, 2, 'padam.khanal', 'padam@gmail.com', '933d8a95e14c0198ad96075eab6a735528b9466e', '4gvR', '1', '', '', 'padam', 'khanal', '2017-11-20 05:51:01');
 
 -- --------------------------------------------------------
@@ -70,7 +70,7 @@ CREATE TABLE `default_ambassador_message` (
 --
 
 INSERT INTO `default_ambassador_message` (`id`, `name`, `image`, `message`, `created_at`) VALUES
-(1, 'test message', 'tri-banner-background--the-resiliency-institute-2.jpeg', '<p>this is message</p>\r\n', '2017-12-17 06:11:30');
+(1, 'Message from Ambassador H.E. Mme. Deng Ying', 'download.jpg', '<p>Geographically far apart from each other, China and Denmark have enjoyed a long history of friendship and interactions. Ever since the establishment of diplomatic ties, we have witnessed tremendous progress in our ties with ever-deepening political mutual-trust and fruitful results in exchanges and cooperation on all fronts, culminating in China-Denmark Comprehensive Strategic Partnership established in 2008. The Embassy is committed to advancing sustained, sound and steady development of bilateral cooperation, and enhancing mutual understanding, exchanges and friendship between our two peoples.</p>\r\n\r\n<p>As Chinese ambassador to the Kingdom of Denmark, I would like to work with you in boosting bilateral ties, receive your valuable suggestions and comments.</p>\r\n\r\n<p align=\"center\">   Ambassador extraordinary and plenipotentiary of the People&#39;s Republic of China to the Kingdom of Denmark</p>\r\n', '2017-12-19 06:02:43');
 
 -- --------------------------------------------------------
 
@@ -119,8 +119,7 @@ CREATE TABLE `default_counselor` (
 --
 
 INSERT INTO `default_counselor` (`id`, `cat_id`, `title`, `description`, `status`, `image`, `created_at`) VALUES
-(3, 5, 'राहदानी (MRP)', '<p><span> <span>नेपालको राहदानी विभागमा पठाईने छ । नेपालबाट राहदानी तयार हुन झण्डै ६ देखि ८ हप्ता लाग्ने र तयार भई दूतावासमा आइसकेपछि वितरण गरिने छ ।</span></span></p>\r\n', '1', 'tri-banner-background--the-resiliency-institute-2.jpeg', '2017-12-15 10:48:26'),
-(4, 5, 'पेश गर्नु पर्ने आवश्यक कागजातहरु', '<p [removed]=\"box-sizing: border-box; border: 0px; font-family: inherit; font-style: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; color: rgb(64, 64, 64); text-decoration-line: none;\" target=\"_blank\"> http://nepalpassport.gov.np/ </a>गई त्यहां उल्लेख गरिए अनुसारको फाराम  भरी रितपूर्वकको फोटो टांस गरी तीन प्रति भरिएको फाराम दूतावासमा बुझाउने ।</p>\r\n\r\n<ul [removed]: none; color: rgb(64, 64, 64);\">\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">फाराममा हस्ताक्षर गर्ने खण्डमा कालो मसीले आफ्नो हस्ताक्षर गरी निर्दिष्ट स्थानमा ल्याप्चे लगाएको हुनुपर्ने ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">पुरानो राहदानीको सक्कल तथा प्रतिलिपि ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">नेपाली नागरिकताको प्रमाणपत्रको सक्कल र प्रतिलिपि ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">हालै खिचिएको पासपोर्ट साइजका ५ प्रति रंगिन फोटाहरु / फोटाहरु किनारा नभएको-अनुहारको भागले सम्पूर्ण फोटोको ७० देखि ८० प्रतिशत भाग कभर गरेको र दुवै कान स्पष्ट देखिने हुनुपर्दछ ।</li>\r\n <li [removed]: inherit; font-weight: inherit; margin: 0px; outline: 0px; padding: 0px; vertical-align: baseline; list-style-type: square;\">शुल्क: ओमानी रियल  २०.००</li>\r\n</ul>\r\n', '1', '', '2017-12-15 10:49:22');
+(5, 8, 'passport', '<p>this is description</p>\r\n', '0', 'ntc.jpg', '2017-12-19 06:08:26');
 
 -- --------------------------------------------------------
 
@@ -142,9 +141,64 @@ CREATE TABLE `default_counselor_category` (
 --
 
 INSERT INTO `default_counselor_category` (`id`, `cat_title`, `slug`, `image`, `status`, `priority`) VALUES
-(5, 'PASSPORT', 'passport', 'profile_test_icon__74443.jpg', '1', 10),
-(6, 'TRAVEL DOCUMENT', 'travel-document', '', '1', 0),
-(7, 'Power of Attorney', 'power-of-attorney', '', '1', 0);
+(8, 'Passport', 'passport', 'profile_test_icon__74443.jpg', '1', 10);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_documents`
+--
+
+CREATE TABLE `default_documents` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `folder_name` varchar(100) NOT NULL,
+  `create_at` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_documents`
+--
+
+INSERT INTO `default_documents` (`id`, `user_id`, `folder_name`, `create_at`) VALUES
+(1, 3, 'visa', '2017-12-19'),
+(2, 1, 'visa girl', '2017-12-19'),
+(3, 2, 'visa girl', '2017-12-19'),
+(4, 3, 'passport', '2017-12-19');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_document_images`
+--
+
+CREATE TABLE `default_document_images` (
+  `id` int(10) UNSIGNED NOT NULL,
+  `document_id` int(11) NOT NULL,
+  `image` varchar(100) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `default_document_images`
+--
+
+INSERT INTO `default_document_images` (`id`, `document_id`, `image`, `create_at`) VALUES
+(1, 1, 'uploads/documents/visa/1513679305.jpg', '2017-12-19 10:28:25'),
+(2, 1, 'uploads/documents/visa/1513681495.jpg', '2017-12-19 11:04:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_downloads`
+--
+
+CREATE TABLE `default_downloads` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) NOT NULL,
+  `filename` varchar(100) NOT NULL,
+  `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -167,13 +221,6 @@ CREATE TABLE `default_events` (
   `status` enum('0','1') NOT NULL,
   `create_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `default_events`
---
-
-INSERT INTO `default_events` (`id`, `name`, `address`, `email`, `phone`, `description`, `image`, `start_date`, `end_date`, `start_time`, `end_time`, `status`, `create_at`) VALUES
-(4, 'Event Name here', 'kathamandu', 'event@gmail.com', '12345612212', '<p>helo worlld here</p>\r\n', 'tri-banner-background--the-resiliency-institute-2.jpeg', '2017-12-26', '2018-01-24', '04:30 PM', '06:15 PM', '1', '2017-12-17 09:51:48');
 
 -- --------------------------------------------------------
 
@@ -200,9 +247,7 @@ CREATE TABLE `default_landmarks` (
 --
 
 INSERT INTO `default_landmarks` (`id`, `cat_id`, `title`, `email`, `address`, `longitude`, `latitude`, `website`, `image`, `status`, `created_at`) VALUES
-(1, 2, 'kathamdnu hospital', 'bikash.bhandari05@gmail.com', 'Nepal', '84.124', '28.395', '', '', '1', '2017-12-03 15:13:48'),
-(2, 4, 'Prasadi', 'prasadi@gmail.com', 'Prasadi Academy, Jawalakhel, Central Development Region, Nepal', '85.317', '27.671', '', '', '1', '2017-12-04 09:36:45'),
-(3, 2, 'Bir Hospital', 'bir@gmail.com', 'Bir Hospital, Kathmandu, Central Development Region, Nepal', '85.314', '27.705', '', '1512380878.jpeg', '1', '2017-12-04 09:47:58');
+(5, 5, 'Siddharth Bank Limited', 'info@testmail.com', 'Siddhartha Bank Limited, Gatthaghar Road, Gatthaghar, Madhyapur Thimi, Nepal', '85.371', '27.674', '', '1513664547.jpg', '1', '2017-12-19 06:13:06');
 
 -- --------------------------------------------------------
 
@@ -224,8 +269,7 @@ CREATE TABLE `default_landmark_category` (
 --
 
 INSERT INTO `default_landmark_category` (`id`, `cat_title`, `slug`, `image`, `priority`, `status`) VALUES
-(2, 'Hospitals', 'hospital', '', 10, '1'),
-(4, 'College', 'college', '', 20, '1');
+(5, 'Bank', 'bank', '1513663803.jpg', 0, '1');
 
 -- --------------------------------------------------------
 
@@ -259,11 +303,12 @@ CREATE TABLE `default_news` (
   `id` int(11) NOT NULL,
   `cat_id` int(10) UNSIGNED NOT NULL,
   `sub_cat_id` int(11) NOT NULL,
-  `title` text NOT NULL,
-  `sub_title` text NOT NULL,
+  `title` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `sub_title` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `slug` text NOT NULL,
-  `content` text NOT NULL,
-  `author` varchar(220) NOT NULL,
+  `content` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `author` varchar(220) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `image` varchar(100) DEFAULT NULL,
   `flash` int(11) NOT NULL,
   `breaking` int(11) NOT NULL,
   `featured` int(11) NOT NULL,
@@ -278,13 +323,8 @@ CREATE TABLE `default_news` (
 -- Dumping data for table `default_news`
 --
 
-INSERT INTO `default_news` (`id`, `cat_id`, `sub_cat_id`, `title`, `sub_title`, `slug`, `content`, `author`, `flash`, `breaking`, `featured`, `order`, `publish_date`, `url`, `status`, `created_at`) VALUES
-(1, 6, 7, 'Cricket News and Editorial', 'Sheffield Shield: Weatherald brilliance helps SA chase down 325', 'cricket-news-and-editorials-1510828163', '<p><span>Having already scored a century in the first innings, Weatherald brought up his second century of the game during the chase</span></p>\r\n', 'padam khanal', 0, 0, 0, 0, '2017-11-29', '', 'publish', '2017-11-16 10:29:23'),
-(2, 6, 0, 'Stoneman, Cook lead dominant batting display', '', 'stoneman-cook-lead-dominant-batting-display-1510829906', '<p>asasasas</p>\r\n', 'bikash', 0, 0, 0, 0, '2017-11-24', '', 'publish', '2017-11-16 10:58:26'),
-(3, 5, 8, 'helo bro', 'final test', 'final-test-1510831569', '<p>helo there</p>\r\n', 'padam', 0, 0, 0, 0, '2017-12-09', '', 'publish', '2017-11-16 11:26:09'),
-(4, 6, 0, 'my name is ', 'Sunt nobis ex adipisci quae ', 'my-name-is-1512285603', '<p><span [removed] rgb(102, 102, 102); font-family: Verdana, Geneva, sans-serif; font-size: 10px;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</span></p>\r\n', 'Vel corrupti est quo quidem sint magnam nisi eos et', 0, 0, 0, 0, '2017-12-21', '', 'publish', '2017-12-03 07:20:03'),
-(5, 6, 0, 'Ex eum minus labore dolor in eos minus ', 'Amet tempora iure corrupti rerum laborum dolorem ', 'Qui dolorem anim dolores assumenda odit dignissimo-1512285722', '<p><span>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</span></p>\r\n', 'snil pant', 0, 0, 0, 0, '0000-00-00', '', 'publish', '2017-12-03 07:22:02'),
-(6, 6, 0, 'Est voluptate nostrud aliquip quia officia omnis et ut unde', 'Ullamco ullamco officia optio alias alias', 'est-voluptate-nostrud-aliquip-quia-officia-omnis-et-ut-unde-1512285828', '<p><span [removed] rgb(102, 102, 102); font-family: Verdana, Geneva, sans-serif; font-size: 10px;\">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem. Nulla consequat massa quis enim. Donec pede justo, fringilla vel, aliquet nec, vulputate eget, arcu. In enim justo, rhoncus ut, imperdiet a, venenatis vitae, justo. Nullam dictum felis eu pede mollis pretium. Integer tincidunt. Cras dapibus. Vivamus elementum semper nisi. Aenean vulputate eleifend tellus. Aenean leo ligula, porttitor eu, consequat vitae, eleifend ac, enim. Aliquam lorem ante, dapibus in, viverra quis, feugiat a, tellus. Phasellus viverra nulla ut metus varius laoreet. Quisque rutrum. Aenean imperdiet. Etiam ultricies nisi vel augue. Curabitur ullamcorper ultricies nisi. Nam eget dui. Etiam rhoncus. Maecenas tempus, tellus eget condimentum rhoncus, sem quam semper libero, sit amet adipiscing sem neque sed ipsum. Nam quam nunc, blandit vel, luctus pulvinar, hendrerit id, lorem. Maecenas nec odio et ante tincidunt tempus. Donec vitae sapien ut libero venenatis faucibus. Nullam quis ante. Etiam sit amet orci eget eros faucibus tincidunt. Duis leo. Sed fringilla mauris sit amet nibh. Donec sodales sagittis magna. Sed consequat, leo eget bibendum sodales, augue velit cursus nunc,</span></p>\r\n', 'harish saud', 0, 0, 0, 0, '0000-00-00', '', 'publish', '2017-12-03 07:23:48');
+INSERT INTO `default_news` (`id`, `cat_id`, `sub_cat_id`, `title`, `sub_title`, `slug`, `content`, `author`, `image`, `flash`, `breaking`, `featured`, `order`, `publish_date`, `url`, `status`, `created_at`) VALUES
+(9, 9, 0, 'test news', 'test-news', 'test-news-1513664817', '<p>this is test news</p>\r\n', 'ramesh chand', 'images_(12).jpg', 0, 0, 0, 0, '2017-12-27', '', 'publish', '2017-12-19 06:26:57');
 
 -- --------------------------------------------------------
 
@@ -306,9 +346,7 @@ CREATE TABLE `default_news_category` (
 --
 
 INSERT INTO `default_news_category` (`id`, `cat_title`, `parent_cat_id`, `slug`, `priority`, `status`) VALUES
-(6, 'Politics', 0, '', 20, '1'),
-(7, 'Cricket', 5, '', 0, '1'),
-(8, 'Football', 5, '', 0, '1');
+(9, 'Politics', 0, 'politics', 10, '1');
 
 -- --------------------------------------------------------
 
@@ -361,6 +399,21 @@ CREATE TABLE `default_page_navigation` (
 INSERT INTO `default_page_navigation` (`id`, `nav_group_id`, `title`, `url`, `priority`, `status`) VALUES
 (7, 3, 'category 2', '', 10, '1'),
 (10, 4, 'category 3', '', 0, '1');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `default_press_realese`
+--
+
+CREATE TABLE `default_press_realese` (
+  `id` int(11) NOT NULL,
+  `title` varchar(100) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `description` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `filename` varchar(100) NOT NULL,
+  `publish_at` date NOT NULL,
+  `status` enum('0','1') NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -432,22 +485,12 @@ CREATE TABLE `default_sliders` (
 --
 
 INSERT INTO `default_sliders` (`id`, `title`, `image`, `status`, `created_at`) VALUES
-(10, '', '1513510784_du.jpg', '1', '0000-00-00 00:00:00'),
-(11, '', '1513510784_3S.jpg', '1', '0000-00-00 00:00:00'),
-(12, '', '1513511453_yj.jpg', '1', '0000-00-00 00:00:00'),
-(13, '', '1513511454_D3.jpg', '1', '0000-00-00 00:00:00'),
-(14, '', '1513511454_uM.jpg', '1', '0000-00-00 00:00:00'),
-(15, '', '1513511454_E2.jpg', '1', '0000-00-00 00:00:00'),
-(16, '', '1513511454_2A.jpg', '1', '0000-00-00 00:00:00'),
-(17, '', '1513511906_DP.jpg', '1', '0000-00-00 00:00:00'),
-(18, '', '1513511907_Fu.jpg', '1', '0000-00-00 00:00:00'),
-(19, '', '1513511907_gi.jpg', '1', '0000-00-00 00:00:00'),
-(20, '', '1513512203_bT.jpg', '1', '0000-00-00 00:00:00'),
-(21, '', '1513512204_Tv.jpg', '1', '0000-00-00 00:00:00'),
-(22, '', '1513512204_pI.jpg', '1', '0000-00-00 00:00:00'),
-(23, '', '1513512252_sI.jpg', '1', '0000-00-00 00:00:00'),
-(24, '', '1513512253_U9.jpg', '1', '0000-00-00 00:00:00'),
-(25, '', '1513512253_US.jpg', '1', '0000-00-00 00:00:00');
+(40, 'test', '1513664879_19.jpg', '1', '0000-00-00 00:00:00'),
+(41, 'test', '1513664880_WZ.jpg', '1', '0000-00-00 00:00:00'),
+(43, 'test', '1513664908_GK.jpg', '1', '2017-12-19 07:10:26'),
+(44, '', '1513667366_Eg.jpg', '0', '2017-12-19 07:09:59'),
+(45, '', '1513667367_2z.jpg', '0', '2017-12-19 07:10:06'),
+(46, '', '1513667367_mR.jpg', '0', '2017-12-19 07:10:12');
 
 -- --------------------------------------------------------
 
@@ -492,7 +535,7 @@ CREATE TABLE `default_users` (
 --
 
 INSERT INTO `default_users` (`id`, `full_name`, `email`, `password`, `address`, `password_reset_code`, `status`, `last_login`, `email_varified_link`, `is_varified`, `photo`, `created_at`, `updated_at`) VALUES
-(3, 'bikash', 'bikash.bhandari05@gmail.com', '$2y$11$./dlbdc59lfRNcwqg43Yv.7BnxSjhWUcQ.kAKnkj4f6EifjQlGz5O', '', NULL, '1', '2017-12-06 07:38:15', '', '', '', '2017-12-20 00:00:00', '0000-00-00 00:00:00'),
+(3, 'bikash', 'bikash.bhandari05@gmail.com', '$2y$11$./dlbdc59lfRNcwqg43Yv.7BnxSjhWUcQ.kAKnkj4f6EifjQlGz5O', '', NULL, '1', '2017-12-19 08:07:53', '', '', '', '2017-12-20 00:00:00', '0000-00-00 00:00:00'),
 (11, 'surya', 'surya@gmail.coc', '$2y$11$9lzR2YODkAsUlWdho63c7OFzcwOwsJdUA6JcERb8mlArmFN/OaToS', 'kathmandu', NULL, '0', '0000-00-00 00:00:00', '', '0', 'http://localhost/nio/uploads/photo1512542173', '2017-12-06 07:36:13', '0000-00-00 00:00:00'),
 (12, 'surya', 'surya@gmail.com', '$2y$11$UAiEDNudJWlkoXQwvUEQ6OpcMnJyOsk57qVOGpVhI2kHPvs5zsxh6', 'kathmandu', NULL, '0', '0000-00-00 00:00:00', '', '0', 'uploads/photo1512542214', '2017-12-06 07:36:54', '0000-00-00 00:00:00');
 
@@ -517,7 +560,9 @@ CREATE TABLE `default_user_auth` (
 
 INSERT INTO `default_user_auth` (`id`, `user_id`, `token`, `expire_at`, `created_at`, `updated_at`) VALUES
 (8, 3, 'pwxkr#s7M3gsCQffh9icRN39tGuN2yURuuT4VluGV@uOWhtVSr3DotHjpf62', '2017-12-05 00:29:06', '0000-00-00 00:00:00', '2017-12-04 12:29:06'),
-(9, 3, 'ziBxd!Qn8opLWi!JL2D#i@hs@JUVV4ehynn8S2RrtQgdCPNOobMcanDKa8yU', '2017-12-06 20:02:01', '0000-00-00 00:00:00', '2017-12-06 08:02:01');
+(9, 3, 'ziBxd!Qn8opLWi!JL2D#i@hs@JUVV4ehynn8S2RrtQgdCPNOobMcanDKa8yU', '2017-12-06 20:02:01', '0000-00-00 00:00:00', '2017-12-06 08:02:01'),
+(10, 3, 'HxxqsSCrvWnKUBmCVDQhorNoLKooSwjj!!PC!N9HPr3PANJfn#D@a4kPoJh@', '2017-12-19 19:55:34', '0000-00-00 00:00:00', '0000-00-00 00:00:00'),
+(11, 3, 'MnnFdRdVbtZDuBK38Rcd4tSYb!gsEWGBNY!iojP8Qar9QyN57SsAiwo8bPqy', '2017-12-19 23:33:42', '0000-00-00 00:00:00', '2017-12-19 11:33:42');
 
 --
 -- Indexes for dumped tables
@@ -545,6 +590,24 @@ ALTER TABLE `default_counselor`
 -- Indexes for table `default_counselor_category`
 --
 ALTER TABLE `default_counselor_category`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `default_documents`
+--
+ALTER TABLE `default_documents`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `default_document_images`
+--
+ALTER TABLE `default_document_images`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `default_downloads`
+--
+ALTER TABLE `default_downloads`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -599,6 +662,12 @@ ALTER TABLE `default_page_navigation`
   ADD KEY `nav_group_id` (`nav_group_id`);
 
 --
+-- Indexes for table `default_press_realese`
+--
+ALTER TABLE `default_press_realese`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `default_roles`
 --
 ALTER TABLE `default_roles`
@@ -647,27 +716,42 @@ ALTER TABLE `default_admin`
 -- AUTO_INCREMENT for table `default_counselor`
 --
 ALTER TABLE `default_counselor`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `default_counselor_category`
 --
 ALTER TABLE `default_counselor_category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+--
+-- AUTO_INCREMENT for table `default_documents`
+--
+ALTER TABLE `default_documents`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+--
+-- AUTO_INCREMENT for table `default_document_images`
+--
+ALTER TABLE `default_document_images`
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT for table `default_downloads`
+--
+ALTER TABLE `default_downloads`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `default_events`
 --
 ALTER TABLE `default_events`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `default_landmarks`
 --
 ALTER TABLE `default_landmarks`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `default_landmark_category`
 --
 ALTER TABLE `default_landmark_category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 --
 -- AUTO_INCREMENT for table `default_navigation_groups`
 --
@@ -677,12 +761,12 @@ ALTER TABLE `default_navigation_groups`
 -- AUTO_INCREMENT for table `default_news`
 --
 ALTER TABLE `default_news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `default_news_category`
 --
 ALTER TABLE `default_news_category`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 --
 -- AUTO_INCREMENT for table `default_pages`
 --
@@ -693,6 +777,11 @@ ALTER TABLE `default_pages`
 --
 ALTER TABLE `default_page_navigation`
   MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+--
+-- AUTO_INCREMENT for table `default_press_realese`
+--
+ALTER TABLE `default_press_realese`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `default_roles`
 --
@@ -707,7 +796,7 @@ ALTER TABLE `default_settings`
 -- AUTO_INCREMENT for table `default_sliders`
 --
 ALTER TABLE `default_sliders`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=47;
 --
 -- AUTO_INCREMENT for table `default_sos`
 --
@@ -722,7 +811,7 @@ ALTER TABLE `default_users`
 -- AUTO_INCREMENT for table `default_user_auth`
 --
 ALTER TABLE `default_user_auth`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- Constraints for dumped tables
 --

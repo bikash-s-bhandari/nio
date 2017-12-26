@@ -107,16 +107,17 @@ class General_model extends CI_Model {
 
     public function generate_thumbnail($file_name,$folder)
     {
-        // echo "test";
+        
         $config['image_library']='gd2';
         $config['source_image']=config_item('upload_path') . $folder.'/'.$file_name;
         $config['new_image']=config_item('upload_path') . $folder.'/thumbs/'.$file_name;
-       // dumparray($config['source_image']);
         $config['maintain_ratio']=TRUE;
-        $config['width']=200;
+        $config['width']=300;
         $config['height']=200;
+        // $config["image_sizes"]["rectangle"] = array(600, 400);
         $this->load->library('image_lib',$config);
         $this->image_lib->initialize($config);
+        //$this->image_lib->resize();
         $this->image_lib->resize();
 
 

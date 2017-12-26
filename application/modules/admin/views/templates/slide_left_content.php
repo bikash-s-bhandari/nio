@@ -1,4 +1,3 @@
-        
   <footer class="main-footer">
        
         <strong>Copyright &copy;2016 <a href="" target="_blank">Sunbi@studio</a>.</strong> All rights reserved.

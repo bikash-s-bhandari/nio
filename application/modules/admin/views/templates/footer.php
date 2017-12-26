@@ -56,22 +56,18 @@
     <script src="<?php echo base_url();?>assets/js/script.js"></script>
     <script>
       function initAutocomplete() {
-        // var map = new google.maps.Map(document.getElementById('map'), {
-        //   center: {lat: -33.8688, lng: 151.2195},
-        //   zoom: 13,
-        //   mapTypeId: 'roadmap'
-        // });
-
         // Create the search box and link it to the UI element.
         var input = document.getElementById('pac-input');
+        var input2=document.getElementById('event_address');
+
+        var autocomplete2=new google.maps.places.Autocomplete(input2);
+        google.maps.event.addListener(autocomplete2,'places_changed',function(){
+          var place2=autocomplete2.getPlace();
+
+        });
+
+
         var searchBox = new google.maps.places.SearchBox(input);
-        // map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        // map.addListener('bounds_changed', function() {
-        //   searchBox.setBounds(map.getBounds());
-        // });
-
         var markers = [];
         // Listen for the event fired when the user selects a prediction and retrieve
         // more details for that place.

@@ -56,7 +56,7 @@
                     </div>
                     <div class="form-group">
                       <label for="exampleInputEmail1">Address</label>
-                      <input type="text" name="address" value="<?php if($isEdit) echo $datas->address;  ?>" class="form-control" placeholder="Enter Address" required>
+                      <input type="text" id="event_address" name="address" value="<?php if($isEdit) echo $datas->address;  ?>" class="form-control" placeholder="Enter Address" required>
                       <span style="color:red"><?php echo form_error('address'); ?></span>
                     </div>
                     <div class="row">

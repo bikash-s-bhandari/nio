@@ -201,6 +201,16 @@ function user_format($date)
     }
 }
 
+function api_format($date) 
+{
+    $time = strtotime($date);
+    if ($time == 0) {
+        return ' - ';
+    } else {
+        return date('d M, Y', strtotime($date));
+    }
+}
+
 function spilt_format($date) 
 {
     $time = strtotime($date);
