@@ -226,6 +226,48 @@ function spilt_format($date)
     }
 }
 
+function get_nice_date($timestamp,$format)
+{
+	switch($format)
+	{
+		//firday 18th of ferbury 2017 at 10:00:00 AM
+		case 'full':
+		$the_date=date('l jS \of F Y \a\t h:i:s A',$timestamp);
+		break;
+
+		//firday 18th of ferbury 2017 
+		case 'cool':
+		$the_date=date('l jS \of F Y',$timestamp);
+		break;
+
+		//18th of ferbury 2017 
+		case 'shorter':
+		$the_date=date('jS \of F Y',$timestamp);
+		break;
+
+		//18th feb 2017
+		case 'mini':
+		$the_date=date('jS M Y',$timestamp);
+		break;
+
+		//18th of ferbury 2017 
+		case 'datepicker':
+		$the_date=date('d\-m\-y',$timestamp);
+		break;
+
+		case 'datepicker_us':
+		$the_date=date('m\/d\/Y',$timestamp);
+		break;
+
+
+
+	}
+
+	return $the_date;
+
+
+}
+
 
 
 
@@ -368,6 +410,34 @@ function get_role($id)
 	return $query->row()->role;
 
 }
+
+function get_user_info($user_id)
+ {
+    $ci = & get_instance();
+	$query=$ci->db->select('*')
+	->from('users')
+	->where('id',$user_id)
+	->get();
+	return $query->row();
+        
+
+
+ } 
+
+ function get_all_users()
+ {
+ 	$ci=&get_instance();
+ 	$array['']="--------------------Select Reciept--------------------------------";
+ 	$sql=$ci->db->select('id,full_name,email')
+ 	->from('users')
+ 	->where('is_varified','1')
+ 	->get();
+ 	foreach ($sql->result() as $k=> $v) {
+ 		$array[$v->id]=$v->full_name."(".$v->email.")";
+ 		
+ 	}
+ 	return $array;
+ }
 
 
  

@@ -299,6 +299,15 @@ class Login_model extends CI_Model {
 	    
 	}
 
+	public function save_key($key)
+	{
+		if($this->db->insert('devices',array('device_key'=>$key)));
+		{
+			return array('status'=>true,'message'=>"Device key is successfully saved.");
+		}
+
+	}
+
 
 
 

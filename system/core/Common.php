@@ -649,13 +649,18 @@ if ( ! function_exists('_exception_handler'))
 	 */
 	function _exception_handler($exception)
 	{
+
+		// echo $exception->getLine();
+		// die;
 		$_error =& load_class('Exceptions', 'core');
 		$_error->log_exception('error', 'Exception: '.$exception->getMessage(), $exception->getFile(), $exception->getLine());
 
 		// Should we display the error?
 		if (str_ireplace(array('off', 'none', 'no', 'false', 'null'), '', ini_get('display_errors')))
 		{
-			$_error->show_exception($exception);
+				var_dump($exception->getMessage()."<br>".$exception->getLine());
+				die;
+			// $_error->show_exception($exception);
 		}
 
 		exit(1); // EXIT_ERROR

@@ -18,7 +18,10 @@
               ?>
             <div class="pull-left info">
               <p><?php if($fullname!=''){  echo $fullname;}else {echo "Admin";} ?></p>
-              <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
+             
+
+              <a href="javascript:void(0)"><i class="fa fa-circle text-success"></i> Online</a>
+
             </div>
           </div>
           <!-- search form -->
@@ -69,7 +72,19 @@
                 <li><a href="<?php echo base_url('admin/notice');?>"><i class="fa fa-file"></i>Notices</a></li>
                 <li><a href="<?php echo base_url('admin/notice/create');?>"><i class="fa fa-plus-circle"></i>Add New</a></li>
              </ul>
-             </li>
+            </li>
+            <li class="<?php if($nav=='notification') echo 'active';?> treeview">
+              <a href="#">
+                <i class="fa fa-bell" aria-hidden="true"></i>
+                <span>Push Notification</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="<?php echo base_url('admin/notification');?>"><i class="fa fa-file"></i>Notification</a></li>
+                <li><a href="<?php echo base_url('admin/notification/create');?>"><i class="fa fa-plus-circle"></i>Add New</a></li>
+             </ul>
+            </li>
+
             <li class="<?php if($nav=='press') echo 'active';?> treeview">
               <a href="#">
                 <i class="fa fa-list-alt" aria-hidden="true"></i>

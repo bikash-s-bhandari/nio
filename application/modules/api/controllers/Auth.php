@@ -129,14 +129,8 @@ class Auth extends MX_Controller
 		} else {
 
 			$check_auth_client = $this->login_model->check_auth_client();
-
-
-
-	
-
-				$params = $_REQUEST;
-
-				if ($params['full_name'] == "") 
+			$params = $_REQUEST;
+			if ($params['full_name'] == "") 
 
 				{
 
@@ -541,28 +535,15 @@ class Auth extends MX_Controller
 
         $message.='<p>Please <strong><a href="' . base_url() . 'api/auth/verify_email?email='.$Email.'&email_code='.$email_code.'">Click Here</a></strong> to verify your email address</p>';
         $message.= "Thank You, <br>Best Regards, <br><strong>" . config_item('site_name') . "</strong>";
-
-
-
-        $mails->Body = $message;
+		$mails->Body = $message;
 
         $mails->AltBody = "Email Verification Information from " . config_item('site_email');
 
-      
-
-        
-
-        if ($mails->send()) {
+     	if ($mails->send()) {
             
             return true;
 
-        
-
-     
-
-       
-
-        } else {
+       } else {
 
        
 
@@ -599,6 +580,36 @@ class Auth extends MX_Controller
         
         
     }
+
+
+
+   public function save_device_key()
+    {
+
+		$method = $_SERVER['REQUEST_METHOD'];
+		if($method!=='POST')
+
+		{
+
+			json_output(400,array('status'=>400,'message'=>'Bad request.'));
+
+		}else
+
+		{
+		    //accept json raw data
+		    $params=json_decode(file_get_contents("php://input"), true);
+		  
+
+		  //  $params = $_REQUEST;
+		    //device token
+			$key=$params['device_key'];
+			$response = $this->login_model->save_key($key);
+			json_output($response['status'],$response);
+
+		}
+	}
+
+
 
 
 

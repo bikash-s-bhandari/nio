@@ -1,5 +1,9 @@
 var base_url = $('#base-url').val();
 
+
+
+
+
 /* load ckeditor starts */
 function load_ckeditor(textarea, customConfig) {
     if (customConfig) {
@@ -11,7 +15,7 @@ function load_ckeditor(textarea, customConfig) {
     CKEDITOR.replace(textarea, {
         customConfig: configFile
     });
-    console.log(configFile);
+
 }
 /* load ckeditor ends */
 
@@ -257,3 +261,37 @@ function geocode() {
 
 
 }
+
+
+/*for admin online status api*/
+
+$('#login_status').on('click', function() {
+    if (!$(this).hasClass('active')) {
+        $.post(base_url + 'admin/user/login_status', { status: 1 }, function(data) {
+            console.log(data);
+
+        });
+
+    } else {
+        $.post(base_url + 'admin/user/login_status', { status: 0 }, function(data) {
+            console.log(data);
+
+        });
+
+    }
+
+
+});
+
+
+
+
+/*for user reciept autocomplete*/
+$('#users').autocomplete({
+    source:base_url+'admin/user/search_user' ,
+    select: function (event, ui) {
+        console.log(ui);
+        // $("#users").val(ui.item.label); // display the selected text
+        $("#hiddenId").val(ui.item.studId); // save selected id to hidden input
+    }
+});

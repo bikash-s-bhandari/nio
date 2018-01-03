@@ -70,8 +70,7 @@ class Landmark extends MX_Controller
 			$this->form_validation->set_rules('title','Title','required');
 			$this->form_validation->set_rules('email','Email','required|valid_email');
 			$this->form_validation->set_rules('address','Address','required');
-
-			if($this->form_validation->run()==FALSE)
+            if($this->form_validation->run()==FALSE)
 			{
 				
 				$this->create();
@@ -81,7 +80,6 @@ class Landmark extends MX_Controller
 
 
                 $data=$this->input->post();
-                
                 if(!empty($_FILES['userfile']['name']))
                 {
                     $logo_name=$this->general->upload_file('landmark');

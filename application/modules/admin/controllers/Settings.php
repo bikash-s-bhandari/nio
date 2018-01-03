@@ -58,4 +58,16 @@ class Settings extends CI_Controller
 //=======================================================================================================
 
 
+
+public function change_status()
+{
+   $status= $_GET['value'];
+   
+
+
+
+}
+
+
+
 }

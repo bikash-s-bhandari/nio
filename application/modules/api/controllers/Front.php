@@ -393,6 +393,7 @@ class Front extends MX_Controller
 		}else
 		{       
 				$response=$this->front_model->get_nep_currency();
+			
 				
 				
 				json_output(200,$response);
@@ -401,7 +402,7 @@ class Front extends MX_Controller
 	}
 	
 	
-	//===============================================================================================================
+	//================================Saving SOS Info===============================================================
 
 
         public function sava_sos()
@@ -447,7 +448,278 @@ class Front extends MX_Controller
         		}
         
         
-        }	
+        }
+
+
+
+        public function delete_sos($user_id,$sos_id)
+        {
+
+        	 $method = $_SERVER['REQUEST_METHOD'];
+        		if($method!=='GET')
+        		{
+        			json_output(400,array('status'=>400,'message'=>'Bad request.'));
+        
+        		}else
+        		{       
+        				$response=$this->front_model->delete_delete_sos($user_id,$sos_id);
+        				json_output(200,$response);
+        		}
+        }
+
+
+
+        public function edit_sos_user($sos_user_id)
+        {
+        	$method = $_SERVER['REQUEST_METHOD'];
+        		if($method!=='GET')
+        		{
+        			json_output(400,array('status'=>400,'message'=>'Bad request.'));
+        
+        		}else
+        		{       
+        				$response=$this->front_model->get_sos_user($sos_id);
+        				json_output(200,$response);
+        		}
+        }
+
+        public function sos_user_update()
+        {
+
+        	   $method = $_SERVER['REQUEST_METHOD'];
+        		if($method!=='POST')
+        		{
+        			json_output(400,array('status'=>400,'message'=>'Bad request.'));
+        
+        		}else
+        		{       $params=$_REQUEST;
+        			    $sos_user_id=$params['sos_user_id'];
+        			    $sos_data=array(
+        				'name'=>$params['name'],
+        				'email'=>$params['email'],
+        				'phone'=>$params['phone'],
+        				);
+        				
+        				$response = $this->front_model->update_sos_user($sos_user_id,$sos_data);
+        				json_output($response['status'],$response);
+        		}
+
+
+        }
+        
+        
+    //=============================Sending emegency SOS message======================================
+    
+    
+    public function send_sos_message($user_id)
+    {
+        
+        $method = $_SERVER['REQUEST_METHOD'];
+		if($method!=='GET')
+		{
+			json_output(400,array('status'=>400,'message'=>'Bad request.'));
+
+		}else
+		{       
+				$response=$this->front_model->send_now($user_id);
+			    json_output(200,$response);
+		}
+        
+        
+    }
+    
+    
+  //===========================================Press Realese============================================  
+  
+  
+  public function get_press_realese()
+  {
+      
+      $method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			// $check_auth_client = $this->login_model->check_auth_client();
+			/*if($check_auth_client == true){*/
+		        // $response = $this->login_model->auth();
+		        $response['status']=200;
+		       
+		        if($response['status'] == 200){
+		        	
+		        	$resp = $this->front_model->get_press();
+		        	foreach ($resp['press_realese'] as $key => $value) {
+		        		$value->publish_at=date("F j\, Y",strtotime($value->publish_at));
+		        		//$value->image=base_url().'uploads/news_events/'.$value->image;
+		        		
+		        	}
+	    			json_output($response['status'],$resp);
+		        }
+			//}
+		}
+    }
+    
+    public function get_press_realese_by_id($id)
+    {
+      
+      $method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			// $check_auth_client = $this->login_model->check_auth_client();
+			/*if($check_auth_client == true){*/
+		        // $response = $this->login_model->auth();
+		        $response['status']=200;
+		       
+		        if($response['status'] == 200){
+		        	
+		        	$resp = $this->front_model->get_press_by_id($id);
+		        
+		        
+		        		$resp['press_details']->publish_at=date("F j\, Y",strtotime($resp['press_details']->publish_at));
+		        		$resp['press_details']->filename=base_url().'uploads/press_realese/'.$resp['press_details']->filename;
+		        		
+		        
+	    			json_output($response['status'],$resp);
+		        }
+			//}
+		}
+    }
+
+
+
+//=================================Counsoler Affair=============================================================
+
+
+public function get_counselor()
+{
+
+	$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			// $check_auth_client = $this->login_model->check_auth_client();
+			/*if($check_auth_client == true){*/
+		        // $response = $this->login_model->auth();
+		        $response['status']=200;
+		       
+		        if($response['status'] == 200){
+		        	
+		        	$resp = $this->front_model->get_counselor_affair();
+		        	// foreach ($resp['press_realese'] as $key => $value) {
+		        	// 	$value->publish_at=date("F j\, Y",strtotime($value->publish_at));
+		        	// 	//$value->image=base_url().'uploads/news_events/'.$value->image;
+		        		
+		        	// }
+	    			json_output($response['status'],$resp);
+		        }
+			//}
+		}
+
+}  
+
+//=========================================================================================================
+
+public function online_status()
+{
+
+	$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+			// $check_auth_client = $this->login_model->check_auth_client();
+			/*if($check_auth_client == true){*/
+		        // $response = $this->login_model->auth();
+		        $response['status']=200;
+		       
+		        if($response['status'] == 200){
+		        	
+		        	$resp = $this->front_model->get_status();
+		        	// foreach ($resp['press_realese'] as $key => $value) {
+		        	// 	$value->publish_at=date("F j\, Y",strtotime($value->publish_at));
+		        	// 	//$value->image=base_url().'uploads/news_events/'.$value->image;
+		        		
+		        	// }
+	    			json_output($response['status'],$resp);
+		        }
+			//}
+		}
+
+
+}  
+
+
+//===========================================================================================================
+
+
+public function sent_message()
+{
+
+    $method = $_SERVER['REQUEST_METHOD'];
+     if($method != 'POST'){
+
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+
+		} else {
+
+			$check_auth_client = $this->login_model->check_auth_client();
+			$params = $_REQUEST;
+			$data=array(
+
+				'sent_by'=>$params['user_id'],
+				'sent_to'=>0,
+				'message'=>$params['message'],
+				'created_at'=>strtotime(date('Y-m-d H:i:s'))
+
+				);
+				$respStatus=200;
+               
+				$resp = $this->login_model->save_chat_message($data);
+			
+
+			  }
+
+				json_output($respStatus,$resp);
+
+}
+
+//============================================================================================================
+
+public function get_chat_message($user_id)
+{
+
+	$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+					$resp = $this->front_model->get_messages($user_id);
+		        	
+	    			json_output($response['status'],$resp);
+		        }
+			
+} 
+
+//===========================================================================================================
+
+public function get_push_notifications()
+{
+	$method = $_SERVER['REQUEST_METHOD'];
+		if($method != 'GET'){
+			json_output(400,array('status' => 400,'message' => 'Bad request.'));
+		} else {
+					$resp = $this->front_model->get_notifications();
+		        	
+	    			json_output($response['status'],$resp);
+		        }
+			
+
+
+
+}
+
+
+
+
+
 
 
 

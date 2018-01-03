@@ -180,4 +180,42 @@ class User extends CI_Controller
         redirect('admin/user/admin_user');
     }
 
+
+
+    public function login_status()
+    {
+        $data['login_status']=$this->input->post('status');
+        $this->db->where('id',1);
+        $this->db->update('settings',$data);
+        echo "success";
+    }
+
+
+
+
+    public function search_user()
+    {
+        $search_query=$this->input->get('term');
+        // die($search_query);
+        $this->db->like('full_name',$search_query);
+        $query=$this->db->get('users');
+        $result=$query->result();
+        $array = array();
+
+        foreach ($result as  $value) {
+           // $array[] = array($value->id,$value->full_name);
+            $array[] = array("studId" => $value->id,
+                            "value"=>$value->full_name,
+                            "label"=>$value->full_name);
+        }
+        echo json_encode($array);
+        exit();
+
+
+
+    }
+
+
+    
+
 }

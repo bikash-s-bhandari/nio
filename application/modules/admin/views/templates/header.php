@@ -18,6 +18,22 @@
           </a>
           <div class="navbar-custom-menu">
             <ul class="nav navbar-nav">
+              <li class="dropdown messages-menu <?php if($nav=='u_message'){ echo 'active';}   ?>">
+                <?php 
+                $this->db->where('opened',0);
+                $this->db->where('sent_to',0);
+                $query=$this->db->get('chat_messages');
+                $count=$query->num_rows();
+
+                  ?>
+                <a href="<?php echo base_url('admin/message');?>">
+                  <i class="fa fa-envelope-o"></i>
+                  <?php if($count>0):  ?>
+                  <span class="label label-success"><?= $count; ?></span>
+                <?php endif; ?>
+                </a>
+                
+              </li>
               <!-- Messages: style can be found in dropdown.less-->
               <?php
               $fullname=$this->session->userdata('admin_user')['fname'].' '.$this->session->userdata('admin_user')['lname'];

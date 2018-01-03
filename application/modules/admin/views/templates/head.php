@@ -11,6 +11,8 @@
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/font-awesome/css/font-awesome.min.css">
+    <link rel="shortcut icon" type="image/png" href="uploads/favicon-32x32.png"/>
+   
 
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
@@ -25,6 +27,8 @@
     <!-- Morris chart -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/morris/morris.css">
     <!-- jvectormap -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+
    
     <!-- Date Picker -->
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/datepicker/datepicker3.css">
@@ -36,6 +40,7 @@
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-fileinput/bootstrap-fileinput.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-switch/css/bootstrap-switch.min.css">
+    <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/bootstrap-select/css/bootstrap-select.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/js/datepicker/datepicker3.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/js/datepicker/bootstrap-datetimepicker.min.css">
     <link rel="stylesheet" href="<?php echo base_url();?>assets/plugins/timepicker/bootstrap-timepicker.min.css">

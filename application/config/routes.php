@@ -57,6 +57,7 @@ $default_controller = "admin";
 $route['default_controller']=$default_controller;
 
 $route['admin/ambassador']="admin/ambassador_message";
+// $route['admin/message/reply_message/(:any)']='admin/message/reply_message/$1';
 
 
 

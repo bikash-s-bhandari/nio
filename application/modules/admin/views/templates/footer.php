@@ -38,10 +38,12 @@
     <script src="<?php echo base_url();?>assets/plugins/slimScroll/jquery.slimscroll.min.js"></script>
     <!-- FastClick -->
     <script src="<?php echo base_url();?>assets/plugins/fastclick/fastclick.min.js"></script>
+    <script src="<?php echo base_url();?>assets/plugins/bootstrap-select/js/bootstrap-select.min.js"></script>
+     <script src="<?php echo base_url();?>assets/plugins/jQueryUI/jquery-ui.min.js"></script>
     <!-- AdminLTE App -->
     <script src="<?php echo base_url();?>assets/dist/js/app.min.js"></script>
     <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-    <script src="<?php echo base_url();?>assets/dist/js/pages/dashboard.js"></script>
+   <!--  <script src="<?php echo base_url();?>assets/dist/js/pages/dashboard.js"></script> -->
     <!-- AdminLTE for demo purposes -->
     <script src="<?php echo base_url();?>assets/dist/js/demo.js"></script>
     <script src="<?php echo base_url();?>assets/plugins/bootstrap-fileinput/bootstrap-fileinput.js"></script>
@@ -51,9 +53,11 @@
     <script src="<?php echo base_url();?>assets/plugins/timepicker/bootstrap-timepicker.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/jquery.validate.min.js"></script>
     <script src="<?php echo base_url();?>assets/js/additional-methods.min.js"></script>
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     
-    <script src="<?php echo base_url();?>assets/js/script.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    
+
     <script>
       function initAutocomplete() {
         // Create the search box and link it to the UI element.
@@ -124,6 +128,7 @@
         
 
 
+    <script src="<?php echo base_url();?>assets/js/script.js"></script>
           
 
     
